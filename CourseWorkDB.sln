@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdDiskStoreAspNetCore", "CdDiskStoreAspNetCore\CdDiskStoreAspNetCore.csproj", "{2B1E1144-B107-434C-86BC-9FE647E78312}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B1E1144-B107-434C-86BC-9FE647E78312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1E1144-B107-434C-86BC-9FE647E78312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1E1144-B107-434C-86BC-9FE647E78312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1E1144-B107-434C-86BC-9FE647E78312}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D0EEFCF-D4F2-44B3-932A-6E50C047CEEC}
+	EndGlobalSection
+EndGlobal
