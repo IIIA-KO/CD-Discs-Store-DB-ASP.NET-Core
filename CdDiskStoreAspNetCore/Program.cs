@@ -1,5 +1,5 @@
 using CdDiskStoreAspNetCore.Data;
-using CdDiskStoreAspNetCore.Utilities;
+using CdDiskStoreAspNetCore.Utilities.ExtensionClasses;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

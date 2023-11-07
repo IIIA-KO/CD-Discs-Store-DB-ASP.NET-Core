@@ -9,9 +9,11 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        [MaxLength(50)]
+        [StringLength(50)]
+        [Required(ErrorMessage = "The \"Name\" field is required")]
         public string Name { get; set; } = default!;
 
+        [Required(ErrorMessage = "The \"Price\" field is required")]
         [Range(0.00, 99999999.99, ErrorMessage = "Price should be in the range of 0.00 to 99999999.99")]
         public decimal Price { get; set; }
     }

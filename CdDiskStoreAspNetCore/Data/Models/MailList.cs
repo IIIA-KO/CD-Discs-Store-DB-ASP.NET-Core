@@ -9,7 +9,7 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        [MaxLength(100)]
+        [StringLength(100)]
         public string Mail { get; set; } = default!;
 
         public Client? Client { get; set; }

@@ -9,7 +9,7 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         public string TypeName { get; set; } = default!;
     }
 }
