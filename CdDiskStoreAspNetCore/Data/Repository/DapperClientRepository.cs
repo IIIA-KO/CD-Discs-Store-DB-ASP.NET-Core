@@ -1,5 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Data.Contexts;
 using CdDiskStoreAspNetCore.Data.Models;
+using CdDiskStoreAspNetCore.Models;
 using Dapper;
 using System.Data;
 
@@ -62,6 +63,26 @@ namespace CdDiskStoreAspNetCore.Data.Repository
         {
             using IDbConnection dbConnection = this._context.CreateConnection();
             return await dbConnection.ExecuteScalarAsync<bool>("SELECT COUNT(1) FROM Client WHERE Id = @Id", new { Id = id });
+        }
+
+        public async Task<IReadOnlyList<Client>> GetFiltered(string? filter, string? fieldName)
+        {
+            if (fieldName == null || !ClientsIndexViewModel.AvailableFields.Contains(fieldName))
+            {
+                throw new ArgumentOutOfRangeException(nameof(fieldName), "Failed to get filter condition. Client table does not have such filterable column");
+            }
+
+            if (filter == null)
+            {
+                return await this.GetAllAsync();
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+            var parameters = new DynamicParameters();
+            parameters.Add("@value", $"%{filter}%");
+            var clients = await dbConnection.QueryAsync<Client>($"SELECT * FROM Client WHERE {fieldName} LIKE @value", parameters);
+
+            return (IReadOnlyList<Client>)clients ?? new List<Client>();
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Data.Repository;
+using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Utilities.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 namespace CdDiskStoreAspNetCore.Controllers
@@ -17,9 +19,16 @@ namespace CdDiskStoreAspNetCore.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? filter, string fieldName = "FirstName")
         {
-            return View(await this._clientRepository.GetAllAsync());
+            var model = new ClientsIndexViewModel
+            {
+                Filter = filter,
+                FieldName = fieldName,
+                Clients = await this._clientRepository.GetFiltered(filter, fieldName)
+            };
+
+            return View(model);
         }
 
         // GET: Clients/Details/5

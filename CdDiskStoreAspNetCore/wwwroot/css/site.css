@@ -16,3 +16,34 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 24px;
+    padding: 2px;
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.add-button {
+    background-color: green;
+    color: white;
+}
+
+.edit-button {
+    background-color: blue;
+    color: white;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+}
+
+.details-button {
+    background-color: yellow;
+    color: white;
+}
