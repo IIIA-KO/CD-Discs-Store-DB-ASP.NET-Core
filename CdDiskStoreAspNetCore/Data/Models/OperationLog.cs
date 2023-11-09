@@ -14,7 +14,7 @@ namespace CdDiskStoreAspNetCore.Data.Models
         public int OperationTypeId { get; set; }
 
         public DateTime OperationDateTimeStart { get; set; }
-        
+
         public DateTime OperationDateTimeEnd { get; set; }
 
         public Client? Client { get; set; }

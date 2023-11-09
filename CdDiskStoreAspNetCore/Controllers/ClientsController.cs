@@ -1,10 +1,10 @@
 ﻿using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
+using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Utilities.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 namespace CdDiskStoreAspNetCore.Controllers
@@ -19,14 +19,24 @@ namespace CdDiskStoreAspNetCore.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(string? filter, string fieldName = "FirstName")
+        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "FirstName", string? sortField = "Id")
         {
             var model = new ClientsIndexViewModel
             {
                 Filter = filter,
-                FieldName = fieldName,
-                Clients = await this._clientRepository.GetFiltered(filter, fieldName)
+                FilterFieldName = filterFieldName,
+                SortFieldName = sortField,
+                Clients = await this._clientRepository.GetData(filter, filterFieldName, sortOrder, filterFieldName) ?? new List<Client>()
             };
+
+            if (sortOrder == MySortOrder.Ascending)
+            {
+                model.SortOrder = MySortOrder.Descending;
+            }
+            else
+            {
+                model.SortOrder = MySortOrder.Ascending;
+            }
 
             return View(model);
         }
@@ -98,29 +108,9 @@ namespace CdDiskStoreAspNetCore.Controllers
                 return NotFound();
             }
 
-            Client currentClient;
-            try
-            {
-                currentClient = await this._clientRepository.GetByIdAsync(id);
-            }
-            catch (NullReferenceException ex)
-            {
-                return NotFound(ex.Message);
-            }
-
-            if (currentClient != null && !IsClientChanged(currentClient, client))
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
             try
             {
                 int result = await this._clientRepository.UpdateAsync(client);
-
-                if (result == 0)
-                {
-                    throw new DbUpdateException("Client edit failed");
-                }
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -132,10 +122,6 @@ namespace CdDiskStoreAspNetCore.Controllers
                 {
                     throw;
                 }
-            }
-            catch (DbUpdateException ex)
-            {
-                return Problem(ex.Message);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -155,20 +141,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
 
             return true;
-        }
-
-        private bool IsClientChanged(Client currentClient, Client client)
-        {
-            return currentClient.FirstName != client.FirstName
-                || currentClient.LastName != client.LastName
-                || currentClient.Address != client.Address
-                || currentClient.City != client.City
-                || currentClient.ContactPhone != client.ContactPhone
-                || currentClient.ContactMail != client.ContactMail
-                || currentClient.BirthDay != client.BirthDay
-                || currentClient.MarriedStatus != client.MarriedStatus
-                || currentClient.Sex != client.Sex
-                || currentClient.HasChild != client.HasChild;
         }
 
         // GET: Clients/Delete/5

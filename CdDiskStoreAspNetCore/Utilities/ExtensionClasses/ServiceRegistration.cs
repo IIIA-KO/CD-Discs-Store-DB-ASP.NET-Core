@@ -7,7 +7,7 @@ namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
     {
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IDapperContext, DapperContext>();
+            services.AddSingleton<IDapperContext, DapperContext>();
             services.AddScoped<IClientRepository, DapperClientRepository>();
             services.AddScoped<IDiscRepository, DapperDiscRepository>();
             services.AddScoped<IMusicRepository, DapperMusicRepository>();

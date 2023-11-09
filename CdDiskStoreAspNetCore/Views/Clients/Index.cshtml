@@ -1,126 +1,176 @@
-﻿@using CdDiskStoreAspNetCore.Data.Models;
-@model ClientsIndexViewModel
+﻿@model ClientsIndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Сlients</h1>
 
-<div class="row mb-3">
-    <div class="col-md-10">
-        <a asp-action="Create">
-            <i class="icon-button add-button fas fa-plus"></i>
-        </a>
-    </div>
-</div>
+<div class="container-fluid">
 
-<form asp-controller="Clients" asp-action="Index" method="post">
     <div class="row mb-3">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="FieldName">Field to filter by:</label>
-                @Html.DropDownListFor(model => model.FieldName, new SelectList(ClientsIndexViewModel.AvailableFields), new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="col-md-5">
-            <div class="form-group">
-                <label for="filter">Filter:</label>
-                <input type="text" id="filter" name="filter" class="form-control" />
-            </div>
-        </div>
-
-        <div class="col-md-3 d-grid">
-            <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
+        <div class="col-md-10">
+            <a asp-action="Create">
+                <i class="icon-button add-button fas fa-plus"></i>
+            </a>
         </div>
     </div>
-</form>
 
-<div class="row">
-    <table class="table col-">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().ContactPhone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Clients.First().ContactMail)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Clients)
-            {
-                string sexDisplayName = item.Sex ? "Man" : "Woman";
-                string marriedStatusDisplayName = item.MarriedStatus ? "Married" : "Not married";
-                string hasChildDisplayName = item.HasChild ? "Has at least one child" : "Doesn't have children";
+    <form asp-controller="Clients" asp-action="Index" method="post">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="filterField">Filter by:</label>
+                    @Html.DropDownListFor(model => model.FilterFieldName, new SelectList(ClientsIndexViewModel.AvailableFilterFieldNames), new { @class = "form-control" })
+                </div>
+            </div>
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ContactPhone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ContactMail)
-                    </td>
-                    <td>
-                        <a asp-action="Create" asp-route-id="@item.Id">
-                            <i class="icon-button edit-button fas fa-edit"></i>
-                        </a>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="filter">Filter:</label>
+                    <input type="text" id="filter" name="filter" class="form-control" />
+                </div>
+            </div>
 
-                        <a asp-action="Details" asp-route-id="@item.Id">
-                            <i class="icon-button details-button fas fa-eye"></i>
-                        </a>
+            <div class="col-md-3 d-grid">
+                <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
+            </div>
+        </div>
+    </form>
 
-                        <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
+    <div class="row" style="width: 80vw;">
+        @if (Model.Clients != null && Model.Clients.Any())
+        {
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "FirstName" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "LastName" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Address" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "City" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "ContactPhone" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "ContactMail" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "BirthDay" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "MarriedStatus" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Sex" });
+                            }
+                        </th>
+                        <th>
+                            @{
+                                await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "HasChild" });
+                            }
+                        </th>
+                    </tr>
+                </thead>
 
-                        <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Client to delete</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @Html.DisplayFor(modelItem => item.FirstName)
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <form method="post" asp-action="Delete" asp-route-id="@item.Id">
-                                            <input type="hidden" asp-for="@item.Id" />
-                                            <input type="submit" value="Delete" class="btn btn-danger" />
-                                        </form>
+                <tbody>
+                    @foreach (var item in Model.Clients)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactPhone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactMail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BirthDay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MarriedStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HasChild)
+                            </td>
+                            <td>
+                                <a asp-action="Create" asp-route-id="@item.Id">
+                                    <i class="icon-button edit-button fas fa-edit"></i>
+                                </a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="icon-button details-button fas fa-eye"></i>
+                                </a>
+
+                                <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
+
+                                <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Client to delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                                    <input type="hidden" asp-for="@item.Id" />
+                                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>No clients in database</h1>
+        }
+    </div>
 </div>

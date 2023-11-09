@@ -1,0 +1,31 @@
+﻿@using CdDiskStoreAspNetCore.Models.Interfaces;
+@model CdDiskStoreAspNetCore.Models.SortModel
+
+@{
+
+    if (Model.ViewModel is not IFilterable filterable)
+    {
+        <p>
+            IFilterable interface is not implemented
+        </p>
+    }
+    else if (Model.ViewModel is not ISortable sortable)
+    {
+        <p>
+            ISortable interface is not implemented
+        </p>
+    }
+    else
+    {
+        string arrow = "";
+
+        if (sortable.SortFieldName == Model.FieldName)
+        {
+            arrow = sortable.SortOrder == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending ? "fa-sort-up" : "fa-sort-down";
+        }
+        
+        <a asp-action="Index" asp-route-sortField="@Model.FieldName" asp-route-sortOrder="@sortable.SortOrder" asp-route-filterField="@filterable.FilterFieldName" asp-route-filter="@filterable.Filter">
+            @Model.FieldName <i class="fas @arrow"></i>
+        </a>
+    }
+}

@@ -1,7 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Data.Contexts;
 using CdDiskStoreAspNetCore.Data.Models;
 using Dapper;
-using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
