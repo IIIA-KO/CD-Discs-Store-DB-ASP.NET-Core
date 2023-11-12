@@ -1,0 +1,68 @@
+﻿@model object
+@using CdDiskStoreAspNetCore.Models.Interfaces.Data;
+
+@{
+    if (Model is not IDataProcessable processable)
+    {
+        <p>
+            IDataProcessable interface is not implemented
+        </p>
+    }
+    else
+    {
+        int pages = processable.CountItems / processable.PageSize + (processable.CountItems % processable.PageSize > 0 ? 1 : 0);
+
+        if (pages > 1)
+        {
+            int currentPage = processable.Skip == 0 ? 1 : (processable.Skip / processable.PageSize) + 1;
+            string previousState = processable.Skip == 0 ? "disabled" : "";
+
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-page=""
+                           asp-route-skip="0"
+                           asp-route-sortOrder="@processable.SortOrder"
+                           asp-route-filterField="@processable?.FilterFieldName"
+                           asp-route-filter="@processable?.Filter">First</a>
+                    </li>
+
+                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-page=""
+                           asp-route-skip="@((currentPage-2)*processable?.PageSize)"
+                           asp-route-sortOrder="@processable?.SortOrder"
+                           asp-route-filterField="@processable?.FilterFieldName"
+                           asp-route-filter="@processable?.Filter">Previous</a>
+                    </li>
+
+                    @for (int i = 1; i <= pages; i++)
+                    {
+                        <li class="page-item @(currentPage == i ? "active" : "")">
+                            <a class="page-link" asp-page=""
+                               asp-route-skip="@((i-1)*processable?.PageSize)"
+                               asp-route-sortOrder="@processable?.SortOrder"
+                               asp-route-filterField="@processable?.FilterFieldName"
+                               asp-route-filter="@processable?.Filter">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(currentPage == pages ? "disabled" : "")">
+                        <a class="page-link" asp-page=""
+                           asp-route-skip="@((currentPage)*processable?.PageSize)"
+                           asp-route-sortOrder="@processable?.SortOrder"
+                           asp-route-filterField="@processable?.FilterFieldName"
+                           asp-route-filter="@processable?.Filter">Next</a>
+                    </li>
+
+                    <li class="page-item @(currentPage == pages ? "disabled" : "")">
+                        <a class="page-link" asp-page=""
+                           asp-route-skip="@((pages-1)*processable?.PageSize)"
+                           asp-route-sortOrder="@processable?.SortOrder"
+                           asp-route-filterField="@processable?.FilterFieldName"
+                           asp-route-filter="@processable?.Filter">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
+}

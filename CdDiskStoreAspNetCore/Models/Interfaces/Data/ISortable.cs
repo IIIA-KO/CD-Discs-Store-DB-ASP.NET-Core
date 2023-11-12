@@ -1,6 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Models.Enums;
 
-namespace CdDiskStoreAspNetCore.Models.Interfaces
+namespace CdDiskStoreAspNetCore.Models.Interfaces.Data
 {
     public interface ISortable
     {

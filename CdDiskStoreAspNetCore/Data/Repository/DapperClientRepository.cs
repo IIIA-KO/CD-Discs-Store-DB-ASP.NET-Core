@@ -5,6 +5,7 @@ using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Drawing.Printing;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
@@ -96,50 +97,38 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await dbConnection.ExecuteScalarAsync<bool>("SELECT COUNT(1) FROM Client WHERE Id = @Id", new { Id = id });
         }
 
-
-        private bool ValidateFieldName(string? fieldName)
+        public async Task<IReadOnlyList<Client>> GetProcessedData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
         {
-            if (fieldName == null || !ClientsIndexViewModel.AvailableFilterFieldNames.Contains(fieldName))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task<IReadOnlyList<Client>> GetData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField)
-        {
-            if (filterField == null || !ClientsIndexViewModel.AvailableFilterFieldNames.Contains(filterField))
+            if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
             {
                 throw new ArgumentOutOfRangeException(nameof(filterField), "Failed to get filter condition. Client table does not have such filterable column");
             }
 
-            if (sortField == null)
+            if (sortField == null || !ClientsIndexViewModel.AllFieldNames.Contains(sortField))
             {
                 return await this.GetAllAsync();
             }
 
             using IDbConnection dbConnection = this._context.CreateConnection();
             IReadOnlyList<Client> clients;
-            switch (sortOrder)
+            string sortOrderString = sortOrder switch
             {
-                case MySortOrder.Ascending:
-                    clients = (IReadOnlyList<Client>)await dbConnection.QueryAsync<Client>($"SELECT * FROM Client WHERE {filterField} LIKE @value ORDER BY {sortField} ASC", new { value = "%" + filter + "%" });
-                    break;
+                MySortOrder.Ascending => "ASC",
+                MySortOrder.Descending => "DESC",
+                _ => "ASC",
+            };
 
-                case MySortOrder.Descending:
-                    clients = (IReadOnlyList<Client>)await dbConnection.QueryAsync<Client>($"SELECT * FROM Client WHERE {filterField} LIKE @value ORDER BY {sortField} DESC", new { value = "%" + filter + "%" });
-                    break;
-
-                case MySortOrder.NotSorted:
-                    clients = await this.GetAllAsync();
-                    break;
-
-                default:
-                    clients = (IReadOnlyList<Client>)await dbConnection.QueryAsync<Client>($"SELECT * FROM Client WHERE {filterField} LIKE @value ORDER BY {sortField} ASC", new { value = "%" + filter + "%" });
-                    break;
-            }
+            string sqlQuery = $"SELECT * FROM Client WHERE {filterField} LIKE @value ORDER BY {sortField} {sortOrderString} OFFSET {skip} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            clients = (IReadOnlyList<Client>)await dbConnection.QueryAsync<Client>(sqlQuery, new { value = "%" + filter + "%" });
 
             return (clients ?? new List<Client>());
+        }
+
+        public async Task<int> CountAsync()
+        {
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Client");
         }
     }
 }

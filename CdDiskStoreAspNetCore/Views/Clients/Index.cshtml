@@ -6,7 +6,7 @@
 
 <h1>Сlients</h1>
 
-<div class="container-fluid">
+<div>
 
     <div class="row mb-3">
         <div class="col-md-10">
@@ -21,7 +21,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="filterField">Filter by:</label>
-                    @Html.DropDownListFor(model => model.FilterFieldName, new SelectList(ClientsIndexViewModel.AvailableFilterFieldNames), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.FilterFieldName, new SelectList(ClientsIndexViewModel.FilterableFieldNames), new { @class = "form-control" })
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
     </form>
 
     <div class="row" style="width: 80vw;">
-        @if (Model.Clients != null && Model.Clients.Any())
+        @if (Model.Items != null && Model.Items.Any())
         {
             <table class="table table-responsive">
                 <thead>
@@ -98,7 +98,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model.Clients)
+                    @foreach (var item in Model.Items)
                     {
                         <tr>
                             <td>
@@ -171,6 +171,10 @@
         else
         {
             <h1>No clients in database</h1>
+        }
+
+        @{
+            await Html.RenderPartialAsync("_Pagination", Model);
         }
     </div>
 </div>

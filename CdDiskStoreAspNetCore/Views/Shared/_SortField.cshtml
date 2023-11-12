@@ -1,30 +1,33 @@
 ﻿@using CdDiskStoreAspNetCore.Models.Interfaces;
+@using CdDiskStoreAspNetCore.Models.Interfaces.Data;
 @model CdDiskStoreAspNetCore.Models.SortModel
 
 @{
-
-    if (Model.ViewModel is not IFilterable filterable)
+    if (Model.ViewModel is not IDataProcessable processable)
     {
         <p>
-            IFilterable interface is not implemented
-        </p>
-    }
-    else if (Model.ViewModel is not ISortable sortable)
-    {
-        <p>
-            ISortable interface is not implemented
+            IDataProcessable interface is not implemented
         </p>
     }
     else
     {
         string arrow = "";
 
-        if (sortable.SortFieldName == Model.FieldName)
+        if (processable.SortFieldName == Model.FieldName)
         {
-            arrow = sortable.SortOrder == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending ? "fa-sort-up" : "fa-sort-down";
+            arrow = processable.SortOrder 
+                == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending 
+            ? "fa-sort-up" 
+            : "fa-sort-down";
         }
-        
-        <a asp-action="Index" asp-route-sortField="@Model.FieldName" asp-route-sortOrder="@sortable.SortOrder" asp-route-filterField="@filterable.FilterFieldName" asp-route-filter="@filterable.Filter">
+
+        <a asp-action="Index"
+            asp-route-sortField="@Model.FieldName" 
+            asp-route-sortOrder="@processable.SortOrder" 
+            asp-route-filterField="@processable.FilterFieldName" 
+            asp-route-filter="@processable.Filter"
+            asp-route-skip="@processable.Skip">
+
             @Model.FieldName <i class="fas @arrow"></i>
         </a>
     }

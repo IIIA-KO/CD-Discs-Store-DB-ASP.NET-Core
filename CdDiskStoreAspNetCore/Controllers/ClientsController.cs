@@ -19,15 +19,18 @@ namespace CdDiskStoreAspNetCore.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "FirstName", string? sortField = "Id")
+        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "FirstName", string? sortField = "Id", int skip = 0)
         {
             var model = new ClientsIndexViewModel
             {
                 Filter = filter,
                 FilterFieldName = filterFieldName,
                 SortFieldName = sortField,
-                Clients = await this._clientRepository.GetData(filter, filterFieldName, sortOrder, filterFieldName) ?? new List<Client>()
+                Skip = skip,
+                CountItems = await this._clientRepository.CountAsync()
             };
+
+            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize) ?? new List<Client>();
 
             if (sortOrder == MySortOrder.Ascending)
             {

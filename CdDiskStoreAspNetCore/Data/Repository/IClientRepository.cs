@@ -7,6 +7,8 @@ namespace CdDiskStoreAspNetCore.Data.Repository
     {
         bool IsClientChanged(Client currentClient, Client client);
 
-        Task<IReadOnlyList<Client>> GetData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField);
+        Task<int> CountAsync();
+
+        Task<IReadOnlyList<Client>> GetProcessedData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize);
     }
 }

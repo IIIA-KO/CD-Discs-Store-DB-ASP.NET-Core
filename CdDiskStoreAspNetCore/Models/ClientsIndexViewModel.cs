@@ -1,25 +1,33 @@
 ﻿using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
-using CdDiskStoreAspNetCore.Models.Interfaces;
+using CdDiskStoreAspNetCore.Models.Interfaces.Data;
+using System.ComponentModel;
 
 namespace CdDiskStoreAspNetCore.Models
 {
-    public class ClientsIndexViewModel : IFilterable, ISortable
+    public class ClientsIndexViewModel : IDataProcessable
     {
-        public IEnumerable<Client>? Clients { get; set; }
-        public static IReadOnlyList<string> AvailableFilterFieldNames { get; set; } = typeof(Client).GetProperties()
-            .Where(p => p.PropertyType == typeof(string))
-            .Select(s => s.Name)
-            .ToList();
-        public static IReadOnlyList<string> NotAvailableFilterFieldNames { get; set; } = typeof(Client).GetProperties()
-            .Where(c => c.PropertyType != typeof(string))
-            .Select(s => s.Name)
+        public static IReadOnlyList<string> AllFieldNames { get; private set; } =
+            typeof(Client).GetProperties()
+            .Select(p => p.Name)
             .ToList();
 
-        public string? FilterFieldName { get; set; } = default!;
+        public static IReadOnlyList<string> FilterableFieldNames { get; private set; } =
+            typeof(Client).GetProperties()
+            .Where(p => p.PropertyType == typeof(string))
+            .Select(p => p.Name)
+            .ToList();
+
+        public IEnumerable<Client>? Items { get; set; }
+
         public string? Filter { get; set; } = default!;
+        public string? FilterFieldName { get; set; } = default!;
 
         public string? SortFieldName { get; set; } = default!;
         public MySortOrder SortOrder { get; set; }
+
+        public int Skip { get; set; } = 0;
+        public int PageSize { get; set; } = 5;
+        public int CountItems { get; set; }
     }
 }
