@@ -1,7 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Models.Interfaces.Data;
-using System.ComponentModel;
 
 namespace CdDiskStoreAspNetCore.Models
 {
@@ -27,7 +26,7 @@ namespace CdDiskStoreAspNetCore.Models
         public MySortOrder SortOrder { get; set; }
 
         public int Skip { get; set; } = 0;
-        public int PageSize { get; set; } = 5;
+        public int PageSize { get; set; } = 10;
         public int CountItems { get; set; }
     }
 }

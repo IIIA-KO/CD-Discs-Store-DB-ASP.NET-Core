@@ -11,56 +11,74 @@
     else
     {
         int pages = processable.CountItems / processable.PageSize + (processable.CountItems % processable.PageSize > 0 ? 1 : 0);
-
         if (pages > 1)
         {
-            int currentPage = processable.Skip == 0 ? 1 : (processable.Skip / processable.PageSize) + 1;
+            int currentPage = processable.Skip == 0 ? 1 : processable.Skip / processable.PageSize + 1;
             string previousState = processable.Skip == 0 ? "disabled" : "";
+
 
             <nav aria-label="...">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
-                        <a class="page-link" asp-page=""
-                           asp-route-skip="0"
-                           asp-route-sortOrder="@processable.SortOrder"
-                           asp-route-filterField="@processable?.FilterFieldName"
-                           asp-route-filter="@processable?.Filter">First</a>
-                    </li>
+                    @{
 
-                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
-                        <a class="page-link" asp-page=""
-                           asp-route-skip="@((currentPage-2)*processable?.PageSize)"
-                           asp-route-sortOrder="@processable?.SortOrder"
-                           asp-route-filterField="@processable?.FilterFieldName"
-                           asp-route-filter="@processable?.Filter">Previous</a>
-                    </li>
-
-                    @for (int i = 1; i <= pages; i++)
-                    {
-                        <li class="page-item @(currentPage == i ? "active" : "")">
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
                             <a class="page-link" asp-page=""
-                               asp-route-skip="@((i-1)*processable?.PageSize)"
+                               asp-route-skip="0"
+                               asp-route-sortOrder="@processable.SortOrder"
+                               asp-route-filterField="@processable?.FilterFieldName"
+                               asp-route-filter="@processable?.Filter">First</a>
+                        </li>
+
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-page=""
+                               asp-route-skip="@((currentPage-2)*processable?.PageSize)"
                                asp-route-sortOrder="@processable?.SortOrder"
                                asp-route-filterField="@processable?.FilterFieldName"
-                               asp-route-filter="@processable?.Filter">@i</a>
+                               asp-route-filter="@processable?.Filter">Previous</a>
                         </li>
+
+                        int start = Math.Max(0, Math.Min(currentPage - 5, pages - 9));
+                        int buttons = Math.Min(pages, 9);
+
+                        for (int i = 1; i <= buttons; i++)
+                        {
+                            int pageNumber = i + start;
+                            if (currentPage == pageNumber)
+                            {
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link">@pageNumber</span>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-page=""
+                                       asp-route-skip="@((pageNumber-1)*processable.PageSize)"
+                                       asp-route-sortOrder="@processable?.SortOrder"
+                                       asp-route-filterField="@processable?.FilterFieldName"
+                                       asp-route-filter="@processable?.Filter">@pageNumber</a>
+                                </li>
+                            }
+                        }
+
+
+                        <li class="page-item @(currentPage == pages ? "disabled" : "")">
+                            <a class="page-link" asp-page=""
+                               asp-route-skip="@((currentPage)*processable?.PageSize)"
+                               asp-route-sortOrder="@processable?.SortOrder"
+                               asp-route-filterField="@processable?.FilterFieldName"
+                               asp-route-filter="@processable?.Filter">Next</a>
+                        </li>
+
+                        <li class="page-item @(currentPage == pages ? "disabled" : "")">
+                            <a class="page-link" asp-page=""
+                               asp-route-skip="@((pages-1)*processable?.PageSize)"
+                               asp-route-sortOrder="@processable?.SortOrder"
+                               asp-route-filterField="@processable?.FilterFieldName"
+                               asp-route-filter="@processable?.Filter">Last</a>
+                        </li>
+
                     }
-
-                    <li class="page-item @(currentPage == pages ? "disabled" : "")">
-                        <a class="page-link" asp-page=""
-                           asp-route-skip="@((currentPage)*processable?.PageSize)"
-                           asp-route-sortOrder="@processable?.SortOrder"
-                           asp-route-filterField="@processable?.FilterFieldName"
-                           asp-route-filter="@processable?.Filter">Next</a>
-                    </li>
-
-                    <li class="page-item @(currentPage == pages ? "disabled" : "")">
-                        <a class="page-link" asp-page=""
-                           asp-route-skip="@((pages-1)*processable?.PageSize)"
-                           asp-route-sortOrder="@processable?.SortOrder"
-                           asp-route-filterField="@processable?.FilterFieldName"
-                           asp-route-filter="@processable?.Filter">Last</a>
-                    </li>
                 </ul>
             </nav>
         }
