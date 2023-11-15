@@ -27,10 +27,10 @@ namespace CdDiskStoreAspNetCore.Controllers
                 FilterFieldName = filterFieldName,
                 SortFieldName = sortField,
                 Skip = skip,
-                CountItems = await this._clientRepository.CountAsync()
             };
 
-            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize) ?? new List<Client>();
+            model.CountItems = await this._clientRepository.GetProcessedDataCount(model.Filter, model.FilterFieldName);
+            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             if (sortOrder == MySortOrder.Ascending)
             {
@@ -40,6 +40,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             {
                 model.SortOrder = MySortOrder.Ascending;
             }
+
+            ViewBag.Filter = filter;
+            ViewBag.FilterFieldName = filterFieldName;
 
             return View(model);
         }
@@ -157,7 +160,8 @@ namespace CdDiskStoreAspNetCore.Controllers
             try
             {
                 var client = await this._clientRepository.GetByIdAsync(id);
-                return View(client);
+                //return View(client);
+                return Ok();
             }
             catch (NullReferenceException ex)
             {

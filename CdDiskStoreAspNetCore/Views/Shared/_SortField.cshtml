@@ -15,19 +15,18 @@
 
         if (processable.SortFieldName == Model.FieldName)
         {
-            arrow = processable.SortOrder 
-                == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending 
-            ? "fa-sort-up" 
+            arrow = processable.SortOrder
+                == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending
+            ? "fa-sort-up"
             : "fa-sort-down";
         }
 
         <a asp-action="Index"
-            asp-route-sortField="@Model.FieldName" 
-            asp-route-sortOrder="@processable.SortOrder" 
-            asp-route-filterField="@processable.FilterFieldName" 
-            asp-route-filter="@processable.Filter"
-            asp-route-skip="@processable.Skip">
-
+           asp-route-sortField="@Model.FieldName"
+           asp-route-sortOrder="@processable.SortOrder"
+           asp-route-filterFieldName="@processable.FilterFieldName"
+           asp-route-filter="@processable.Filter"
+           asp-route-skip="@processable.Skip">
             @Model.FieldName <i class="fas @arrow"></i>
         </a>
     }

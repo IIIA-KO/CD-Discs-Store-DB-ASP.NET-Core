@@ -9,7 +9,10 @@
 <div>
 
     <div class="row mb-3">
-        <div class="col-md-10">
+        <div class="col-md-3">
+            <h3>Create new client</h3>
+        </div>
+        <div class="col-md-1">
             <a asp-action="Create">
                 <i class="icon-button add-button fas fa-plus"></i>
             </a>
@@ -20,15 +23,18 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="filterField">Filter by:</label>
-                    @Html.DropDownListFor(model => model.FilterFieldName, new SelectList(ClientsIndexViewModel.FilterableFieldNames), new { @class = "form-control" })
+                    @* <label for="filterField">Filter by:</label>
+                    @Html.DropDownListFor(model => model.FilterFieldName, new SelectList(ClientsIndexViewModel.FilterableFieldNames), Model.FilterFieldName, new { @class = "form-control" }) *@
+
+                    <label asp-for="FilterFieldName">Filter by:</label>
+                    @Html.DropDownList("FilterFieldName", new SelectList(ClientsIndexViewModel.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="col-md-5">
                 <div class="form-group">
                     <label for="filter">Filter:</label>
-                    <input type="text" id="filter" name="filter" class="form-control" />
+                    <input type="text" id="filter" name="filter" value="@Model.Filter" class="form-control" />
                 </div>
             </div>
 

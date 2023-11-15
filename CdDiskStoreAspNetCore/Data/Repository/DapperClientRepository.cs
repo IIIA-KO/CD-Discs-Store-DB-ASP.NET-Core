@@ -4,6 +4,7 @@ using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Drawing.Printing;
 
@@ -122,6 +123,20 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             clients = (IReadOnlyList<Client>)await dbConnection.QueryAsync<Client>(sqlQuery, new { value = "%" + filter + "%" });
 
             return (clients ?? new List<Client>());
+        }
+
+        public async Task<int> GetProcessedDataCount(string? filter, string? filterField)
+        {
+            if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
+            {
+                return await this.CountAsync();
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string countQuery = $"SELECT COUNT(*) FROM Client WHERE {filterField} LIKE @value";
+
+            return await dbConnection.ExecuteScalarAsync<int>(countQuery, new { value = "%" + filter + "%" });
         }
 
         public async Task<int> CountAsync()

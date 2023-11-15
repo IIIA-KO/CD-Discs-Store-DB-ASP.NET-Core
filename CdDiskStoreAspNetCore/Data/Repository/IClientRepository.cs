@@ -9,6 +9,8 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         Task<int> CountAsync();
 
+        Task<int> GetProcessedDataCount(string? filter, string? filterField);
+
         Task<IReadOnlyList<Client>> GetProcessedData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize);
     }
 }
