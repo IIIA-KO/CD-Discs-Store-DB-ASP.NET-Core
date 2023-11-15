@@ -23,6 +23,7 @@
                             <a class="page-link" asp-page=""
                                asp-route-skip="0"
                                asp-route-sortOrder="@processable.SortOrder"
+                               asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">First</a>
                         </li>
@@ -31,9 +32,10 @@
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((currentPage-2)*processable.PageSize)"
                                asp-route-sortOrder="@processable.SortOrder"
+                               asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">
-                                <i class="fas fa-sort-up fa-rotate-270"></i>
+                                <i class="fa-solid fa-chevron-left"></i>
                             </a>
                         </li>
 
@@ -55,6 +57,7 @@
                                     <a class="page-link" asp-page=""
                                        asp-route-skip="@((pageNumber-1)*processable.PageSize)"
                                        asp-route-sortOrder="@processable.SortOrder"
+                                       asp-route-sortField="@processable.SortFieldName"
                                        asp-route-filterFieldName="@processable.FilterFieldName"
                                        asp-route-filter="@processable.Filter">@pageNumber</a>
                                 </li>
@@ -65,9 +68,10 @@
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((currentPage)*processable.PageSize)"
                                asp-route-sortOrder="@processable.SortOrder"
+                               asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">
-                                <i class="fas fa-sort-up fa-rotate-90"></i>
+                                <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </li>
 
@@ -75,6 +79,7 @@
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((pages-1)*processable.PageSize)"
                                asp-route-sortOrder="@processable.SortOrder"
+                               asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">Last</a>
                         </li>

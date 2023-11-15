@@ -29,9 +29,6 @@ namespace CdDiskStoreAspNetCore.Controllers
                 Skip = skip,
             };
 
-            model.CountItems = await this._clientRepository.GetProcessedDataCount(model.Filter, model.FilterFieldName);
-            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
-
             if (sortOrder == MySortOrder.Ascending)
             {
                 model.SortOrder = MySortOrder.Descending;
@@ -41,8 +38,8 @@ namespace CdDiskStoreAspNetCore.Controllers
                 model.SortOrder = MySortOrder.Ascending;
             }
 
-            ViewBag.Filter = filter;
-            ViewBag.FilterFieldName = filterFieldName;
+            model.CountItems = await this._clientRepository.GetProcessedDataCount(model.Filter, model.FilterFieldName);
+            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);
         }
@@ -59,8 +56,16 @@ namespace CdDiskStoreAspNetCore.Controllers
             ViewData["Action"] = "Edit";
             try
             {
-                var client = await this._clientRepository.GetByIdAsync(id);
-                return View(client);
+                var model = new ClientDetailsViewModel()
+                {
+                    Client = await this._clientRepository.GetByIdAsync(id),
+                    PersonalDiscount = await this._clientRepository.GetPersonalDiscountAsync(id),
+                    RentProfit = await this._clientRepository.GetTotalRentProfit(id),
+                    PurchaseProfit = await this._clientRepository.GetTotalPurchaseProfit(id),
+                    TotalProfit = await this._clientRepository.GetTotalProfit(id)
+                };
+
+                return View(model);
             }
             catch (NullReferenceException ex)
             {
@@ -116,7 +121,7 @@ namespace CdDiskStoreAspNetCore.Controllers
 
             try
             {
-                int result = await this._clientRepository.UpdateAsync(client);
+                await this._clientRepository.UpdateAsync(client);
             }
             catch (DbUpdateConcurrencyException)
             {

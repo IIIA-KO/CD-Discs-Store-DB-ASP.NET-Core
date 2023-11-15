@@ -9,9 +9,6 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        [StringLength(50)]
-        public string Name { get; set; } = default!;
-
         public Client? Client { get; set; }
         public Guid IdClient { get; set; }
 

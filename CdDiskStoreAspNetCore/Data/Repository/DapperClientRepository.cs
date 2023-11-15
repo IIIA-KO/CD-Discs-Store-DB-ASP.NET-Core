@@ -69,7 +69,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             using IDbConnection dbConnection = this._context.CreateConnection();
 
             return await dbConnection.ExecuteAsync("UPDATE Client SET FirstName = @FirstName, LastName = @LastName, Address = @Address, City = @City, " +
-            "BirthDay = @BirthDay, MarriedStatus = @MarriedStatus, Sex = @Sex, HasChild = @HasChild WHERE Id = @Id", entity);
+            "ContactPhone = @ContactPhone, ContactMail = @ContactMail, BirthDay = @BirthDay, MarriedStatus = @MarriedStatus, Sex = @Sex, HasChild = @HasChild WHERE Id = @Id", entity);
         }
 
         public bool IsClientChanged(Client currentClient, Client client)
@@ -144,6 +144,60 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             using IDbConnection dbConnection = this._context.CreateConnection();
 
             return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Client");
+        }
+
+        public async Task<int> GetPersonalDiscountAsync(Guid? clientId)
+        {
+            Client client;
+
+            try
+            {
+                client = await this.GetByIdAsync(clientId);
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return await dbConnection.QueryFirstOrDefaultAsync<int>("SELECT TOP 1 PersonalDiscountValue FROM PersonalDiscount WHERE idClient = @id ORDER BY StartDateTime DESC", new { id = clientId });
+        }
+
+        public async Task<decimal> GetTotalPurchaseProfit(Guid? clientId)
+        {
+            if (clientId is null)
+            {
+                throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PURCHASE_PROFIT_FROM_CLIENT(@id)", new {id = clientId});
+        }
+
+        public async Task<decimal> GetTotalRentProfit(Guid? clientId)
+        {
+            if (clientId is null)
+            {
+                throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_RENT_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
+        }
+
+        public async Task<decimal> GetTotalProfit(Guid? clientId)
+        {
+            if (clientId is null)
+            {
+                throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
         }
     }
 }
