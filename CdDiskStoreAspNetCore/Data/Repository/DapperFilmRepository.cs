@@ -1,5 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Data.Contexts;
 using CdDiskStoreAspNetCore.Data.Models;
+using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
 using System.Data;
 
@@ -57,6 +58,26 @@ namespace CdDiskStoreAspNetCore.Data.Repository
         {
             using IDbConnection dbConnection = this._context.CreateConnection();
             return await dbConnection.ExecuteScalarAsync<bool>("SELECT COUNT(1) FROM Film WHERE Id = @Id", new { Id = id });
+        }
+
+        public bool IsEntityChanged(Film currentEntity, Film entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> CountAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetProcessedDataCountAsync(string? filter, string? filterField)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Film>> GetProcessedDataAsync(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
+        {
+            throw new NotImplementedException();
         }
     }
 }

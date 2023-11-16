@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CdDiskStoreAspNetCore.Data.Models;
 
 namespace CdDiskStoreAspNetCore.Data
 {
@@ -11,5 +12,6 @@ namespace CdDiskStoreAspNetCore.Data
 
         }
         public DbSet<CdDiskStoreAspNetCore.Data.Models.Client>? Client { get; set; }
+        public DbSet<CdDiskStoreAspNetCore.Data.Models.Disc>? Disc { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@using CdDiskStoreAspNetCore.Models.Interfaces;
+﻿@using CdDiskStoreAspNetCore.Models.Enums
+@using CdDiskStoreAspNetCore.Models.Interfaces;
 @using CdDiskStoreAspNetCore.Models.Interfaces.Data;
 @model CdDiskStoreAspNetCore.Models.SortModel
 
@@ -16,9 +17,10 @@
         if (processable.SortFieldName == Model.FieldName)
         {
             arrow = processable.SortOrder
-                == CdDiskStoreAspNetCore.Models.Enums.MySortOrder.Ascending
+                == MySortOrder.Ascending
             ? "fa-sort-up"
             : "fa-sort-down";
+            
         }
 
         <a asp-action="Index"

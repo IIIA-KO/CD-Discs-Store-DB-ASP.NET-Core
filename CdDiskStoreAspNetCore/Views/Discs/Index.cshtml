@@ -1,15 +1,12 @@
-﻿@model ClientsIndexViewModel
+﻿@model DiscsIndexViewModel
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Сlients</h1>
+<h1>Discs</h1>
 
 <div>
+
     <div class="row mb-3">
         <div class="col-md-3">
-            <h3>Create new client</h3>
+            <h3>Create new disc</h3>
         </div>
         <div class="col-md-1">
             <a asp-action="Create">
@@ -18,12 +15,12 @@
         </div>
     </div>
 
-    <form asp-controller="Clients" asp-action="Index" method="post">
+    <form asp-controller="Discs" asp-action="Index" method="post">
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="FilterFieldName">Filter by:</label>
-                    @Html.DropDownList("FilterFieldName", new SelectList(ClientsIndexViewModel.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+                    @Html.DropDownList("FilterFieldName", new SelectList(DiscsIndexViewModel.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
                 </div>
             </div>
 
@@ -46,7 +43,7 @@
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        @foreach (string field in ClientsIndexViewModel.AllFieldNames)
+                        @foreach (var field in DiscsIndexViewModel.AllFieldNames)
                         {
                             if (field != "Id")
                             {
@@ -57,7 +54,6 @@
                                 </th>
                             }
                         }
-                        <th></th>
                     </tr>
                 </thead>
 
@@ -66,34 +62,10 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.City)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ContactPhone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ContactMail)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BirthDay)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MarriedStatus)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sex)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.HasChild)
+                                @Html.DisplayFor(modelItem => item.Price)
                             </td>
 
                             <td>
@@ -115,10 +87,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                @{
-                                                    string clientFullName = item.FirstName + " " + item.LastName;
-                                                }
-                                                @Html.DisplayFor(modelItem => clientFullName)
+                                                @Html.DisplayFor(modelItem => item.Name)
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -138,7 +107,7 @@
         }
         else
         {
-            <h1>No clients in database</h1>
+            <h1>No discs in database</h1>
         }
 
         @{

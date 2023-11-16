@@ -3,10 +3,10 @@ using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using System.Data;
-using System.Drawing.Printing;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
@@ -61,7 +61,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
                 throw;
             }
 
-            if (currentClient != null && !IsClientChanged(currentClient, entity))
+            if (currentClient != null && !IsEntityChanged(currentClient, entity))
             {
                 return 0;
             }
@@ -72,18 +72,18 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             "ContactPhone = @ContactPhone, ContactMail = @ContactMail, BirthDay = @BirthDay, MarriedStatus = @MarriedStatus, Sex = @Sex, HasChild = @HasChild WHERE Id = @Id", entity);
         }
 
-        public bool IsClientChanged(Client currentClient, Client client)
+        public bool IsEntityChanged(Client currentEntity, Client entity)
         {
-            return currentClient.FirstName != client.FirstName
-                || currentClient.LastName != client.LastName
-                || currentClient.Address != client.Address
-                || currentClient.City != client.City
-                || currentClient.ContactPhone != client.ContactPhone
-                || currentClient.ContactMail != client.ContactMail
-                || currentClient.BirthDay != client.BirthDay
-                || currentClient.MarriedStatus != client.MarriedStatus
-                || currentClient.Sex != client.Sex
-                || currentClient.HasChild != client.HasChild;
+            return currentEntity.FirstName != entity.FirstName
+                || currentEntity.LastName != entity.LastName
+                || currentEntity.Address != entity.Address
+                || currentEntity.City != entity.City
+                || currentEntity.ContactPhone != entity.ContactPhone
+                || currentEntity.ContactMail != entity.ContactMail
+                || currentEntity.BirthDay != entity.BirthDay
+                || currentEntity.MarriedStatus != entity.MarriedStatus
+                || currentEntity.Sex != entity.Sex
+                || currentEntity.HasChild != entity.HasChild;
         }
 
         public async Task<int> DeleteAsync(Guid id)
@@ -98,7 +98,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await dbConnection.ExecuteScalarAsync<bool>("SELECT COUNT(1) FROM Client WHERE Id = @Id", new { Id = id });
         }
 
-        public async Task<IReadOnlyList<Client>> GetProcessedData(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
+        public async Task<IReadOnlyList<Client>> GetProcessedDataAsync(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
         {
             if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
             {
@@ -125,7 +125,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return (clients ?? new List<Client>());
         }
 
-        public async Task<int> GetProcessedDataCount(string? filter, string? filterField)
+        public async Task<int> GetProcessedDataCountAsync(string? filter, string? filterField)
         {
             if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
             {
@@ -154,9 +154,9 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             {
                 client = await this.GetByIdAsync(clientId);
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                throw ex;
+                throw;
             }
 
             using IDbConnection dbConnection = this._context.CreateConnection();
@@ -164,7 +164,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await dbConnection.QueryFirstOrDefaultAsync<int>("SELECT TOP 1 PersonalDiscountValue FROM PersonalDiscount WHERE idClient = @id ORDER BY StartDateTime DESC", new { id = clientId });
         }
 
-        public async Task<decimal> GetTotalPurchaseProfit(Guid? clientId)
+        public async Task<decimal> GetTotalPurchaseProfitAsync(Guid? clientId)
         {
             if (clientId is null)
             {
@@ -173,10 +173,10 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PURCHASE_PROFIT_FROM_CLIENT(@id)", new {id = clientId});
+            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PURCHASE_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
         }
 
-        public async Task<decimal> GetTotalRentProfit(Guid? clientId)
+        public async Task<decimal> GetTotalRentProfitAsync(Guid? clientId)
         {
             if (clientId is null)
             {
@@ -188,7 +188,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_RENT_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
         }
 
-        public async Task<decimal> GetTotalProfit(Guid? clientId)
+        public async Task<decimal> GetTotalProfitAsync(Guid? clientId)
         {
             if (clientId is null)
             {

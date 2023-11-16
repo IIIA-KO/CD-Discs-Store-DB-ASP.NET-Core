@@ -29,17 +29,12 @@ namespace CdDiskStoreAspNetCore.Controllers
                 Skip = skip,
             };
 
-            if (sortOrder == MySortOrder.Ascending)
-            {
-                model.SortOrder = MySortOrder.Descending;
-            }
-            else
-            {
-                model.SortOrder = MySortOrder.Ascending;
-            }
+            model.SortOrder = (sortOrder == MySortOrder.Ascending)
+                ? MySortOrder.Descending
+                : MySortOrder.Ascending;
 
-            model.CountItems = await this._clientRepository.GetProcessedDataCount(model.Filter, model.FilterFieldName);
-            model.Items = await this._clientRepository.GetProcessedData(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
+            model.CountItems = await this._clientRepository.GetProcessedDataCountAsync(model.Filter, model.FilterFieldName);
+            model.Items = await this._clientRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);
         }
@@ -49,20 +44,18 @@ namespace CdDiskStoreAspNetCore.Controllers
         {
             if (id == null || this._clientRepository == null)
             {
-                ViewData["Action"] = "Create";
                 return NotFound();
             }
 
-            ViewData["Action"] = "Edit";
             try
             {
                 var model = new ClientDetailsViewModel()
                 {
                     Client = await this._clientRepository.GetByIdAsync(id),
                     PersonalDiscount = await this._clientRepository.GetPersonalDiscountAsync(id),
-                    RentProfit = await this._clientRepository.GetTotalRentProfit(id),
-                    PurchaseProfit = await this._clientRepository.GetTotalPurchaseProfit(id),
-                    TotalProfit = await this._clientRepository.GetTotalProfit(id)
+                    RentProfit = await this._clientRepository.GetTotalRentProfitAsync(id),
+                    PurchaseProfit = await this._clientRepository.GetTotalPurchaseProfitAsync(id),
+                    TotalProfit = await this._clientRepository.GetTotalProfitAsync(id)
                 };
 
                 return View(model);
@@ -92,7 +85,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             {
                 return NotFound(ex.Message);
             }
-
         }
 
         // POST: Clients/Create
@@ -165,7 +157,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             try
             {
                 var client = await this._clientRepository.GetByIdAsync(id);
-                //return View(client);
                 return Ok();
             }
             catch (NullReferenceException ex)
