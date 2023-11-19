@@ -22,7 +22,6 @@
                         <li class="page-item @(currentPage == 1 ? "disabled" : "")">
                             <a class="page-link" asp-page=""
                                asp-route-skip="0"
-                               asp-route-sortOrder="@processable.SortOrder"
                                asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">First</a>
@@ -31,7 +30,6 @@
                         <li class="page-item @(currentPage == 1 ? "disabled" : "")">
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((currentPage-2)*processable.PageSize)"
-                               asp-route-sortOrder="@processable.SortOrder"
                                asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">
@@ -56,7 +54,6 @@
                                 <li class="page-item">
                                     <a class="page-link" asp-page=""
                                        asp-route-skip="@((pageNumber-1)*processable.PageSize)"
-                                       asp-route-sortOrder="@processable.SortOrder"
                                        asp-route-sortField="@processable.SortFieldName"
                                        asp-route-filterFieldName="@processable.FilterFieldName"
                                        asp-route-filter="@processable.Filter">@pageNumber</a>
@@ -67,7 +64,6 @@
                         <li class="page-item @(currentPage == pages ? "disabled" : "")">
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((currentPage)*processable.PageSize)"
-                               asp-route-sortOrder="@processable.SortOrder"
                                asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">
@@ -78,7 +74,6 @@
                         <li class="page-item @(currentPage == pages ? "disabled" : "")">
                             <a class="page-link" asp-page=""
                                asp-route-skip="@((pages-1)*processable.PageSize)"
-                               asp-route-sortOrder="@processable.SortOrder"
                                asp-route-sortField="@processable.SortFieldName"
                                asp-route-filterFieldName="@processable.FilterFieldName"
                                asp-route-filter="@processable.Filter">Last</a>

@@ -16,13 +16,15 @@
 
         if (processable.SortFieldName == Model.FieldName)
         {
-            arrow = processable.SortOrder
-                == MySortOrder.Ascending
+            processable.SortOrder = (processable.SortOrder == MySortOrder.Ascending)
+                ? MySortOrder.Descending
+                : MySortOrder.Ascending;
+
+            arrow = (processable.SortOrder == MySortOrder.Ascending)
             ? "fa-sort-up"
             : "fa-sort-down";
-            
         }
-
+        
         <a asp-action="Index"
            asp-route-sortField="@Model.FieldName"
            asp-route-sortOrder="@processable.SortOrder"
