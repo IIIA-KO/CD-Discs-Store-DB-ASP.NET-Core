@@ -51,12 +51,12 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             {
                 currentDisc = await this.GetByIdAsync(entity.Id);
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 throw;
             }
 
-            if(currentDisc != null && !IsEntityChanged(currentDisc, entity))
+            if (currentDisc != null && !IsEntityChanged(currentDisc, entity))
             {
                 return 0;
             }
@@ -85,12 +85,12 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         public async Task<IReadOnlyList<Disc>> GetProcessedDataAsync(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
         {
-            if (filterField == null || !DiscsIndexViewModel.FilterableFieldNames.Contains(filterField))
+            if (filterField == null || !IndexViewModel<Disc>.FilterableFieldNames.Contains(filterField))
             {
                 throw new ArgumentOutOfRangeException(nameof(filterField), "Failed to get filter condition. Disc table does not have such filterable column");
             }
 
-            if (sortField == null || !DiscsIndexViewModel.AllFieldNames.Contains(sortField))
+            if (sortField == null || !IndexViewModel<Disc>.AllFieldNames.Contains(sortField))
             {
                 return await this.GetAllAsync();
             }
@@ -112,7 +112,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         public async Task<int> GetProcessedDataCountAsync(string? filter, string? filterField)
         {
-            if (filterField == null || !DiscsIndexViewModel.FilterableFieldNames.Contains(filterField))
+            if (filterField == null || !IndexViewModel<Disc>.FilterableFieldNames.Contains(filterField))
             {
                 return await this.CountAsync();
             }

@@ -1,0 +1,54 @@
+﻿@model CdDiskStoreAspNetCore.Data.Models.Film
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1 class="mb-4">Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Film</h4>
+            <hr />
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Genre)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Genre)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Producer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Producer)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MainRole)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.MainRole)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AgeLimit)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AgeLimit)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Create" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

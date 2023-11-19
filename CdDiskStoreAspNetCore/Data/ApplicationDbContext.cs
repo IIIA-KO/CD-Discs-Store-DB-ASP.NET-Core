@@ -11,7 +11,6 @@ namespace CdDiskStoreAspNetCore.Data
         {
 
         }
-        public DbSet<CdDiskStoreAspNetCore.Data.Models.Client>? Client { get; set; }
-        public DbSet<CdDiskStoreAspNetCore.Data.Models.Disc>? Disc { get; set; }
+        public DbSet<CdDiskStoreAspNetCore.Data.Models.Film>? Film { get; set; }
     }
 }

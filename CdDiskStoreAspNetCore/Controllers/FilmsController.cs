@@ -7,55 +7,55 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
-    public class DiscsController : Controller
+    public class FilmsController : Controller
     {
-        private readonly IDiscRepository _discRepository;
+        private readonly IFilmRepository _filmRepository;
 
-        public DiscsController(IDiscRepository discRepository)
+        public FilmsController(IFilmRepository filmRepository)
         {
-            this._discRepository = discRepository;
+            this._filmRepository = filmRepository;
         }
 
-        // GET: Discs
-        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "Name", string? sortField = "Id", int skip = 0)
+        // GET: Films
+        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
-            var model = new IndexViewModel<Disc>
+            var model = new IndexViewModel<Film>
             {
                 Filter = filter,
-                FilterFieldName = filterFieldName,
+                FilterFieldName = filterFieldName ?? IndexViewModel<Film>.FilterableFieldNames[0],
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
                 Skip = skip,
-                CountItems = await this._discRepository.GetProcessedDataCountAsync(filter, filterFieldName)
+                CountItems = await this._filmRepository.GetProcessedDataCountAsync(filter, filterFieldName)
             };
 
-            model.Items = await this._discRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
+            model.Items = await this._filmRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);
         }
 
-        // GET: Discs/Details/5
+        // GET: Films/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || this._discRepository == null)
+            if (id == null || this._filmRepository == null)
             {
                 return NotFound();
             }
 
-            Disc disc;
+            Film film;
             try
             {
-                disc = await this._discRepository.GetByIdAsync(id);
+                film = await this._filmRepository.GetByIdAsync(id);
             }
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
             }
 
-            return View(disc);
+            return View(film);
         }
 
-        // GET: Discs/Create
+        // GET: Films/Create
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -67,8 +67,8 @@ namespace CdDiskStoreAspNetCore.Controllers
             ViewData["Action"] = "Edit";
             try
             {
-                var disc = await this._discRepository.GetByIdAsync(id);
-                return View(disc);
+                var film = await this._filmRepository.GetByIdAsync(id);
+                return View(film);
             }
             catch (NullReferenceException ex)
             {
@@ -76,37 +76,37 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Discs/Creates
+        // POST: Films/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Price")] Disc disc)
+        public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Genre,Producer,MainRole,AgeLimit")] Film film)
         {
             if (!ModelState.IsValid)
             {
-                return View(disc);
+                return View(film);
             }
 
             if (id == null)
             {
-                disc.Id = Guid.NewGuid();
+                film.Id = Guid.NewGuid();
 
-                await this._discRepository.AddAsync(disc);
+                await this._filmRepository.AddAsync(film);
 
                 return RedirectToAction(nameof(Index));
             }
 
-            if (id != disc.Id)
+            if (id != film.Id)
             {
                 return NotFound();
             }
 
             try
             {
-                await this._discRepository.UpdateAsync(disc);
+                await this._filmRepository.UpdateAsync(film);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await this._discRepository.ExistsAsync(disc.Id))
+                if (!await this._filmRepository.ExistsAsync(film.Id))
                 {
                     return NotFound();
                 }
@@ -118,17 +118,17 @@ namespace CdDiskStoreAspNetCore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Discs/Delete/5
+        // GET: Films/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || this._discRepository == null)
+            if (id == null || this._filmRepository == null)
             {
                 return NotFound();
             }
 
             try
             {
-                var disc = await this._discRepository.GetByIdAsync(id);
+                var film = await this._filmRepository.GetByIdAsync(id);
                 return Ok();
             }
             catch (NullReferenceException ex)
@@ -137,21 +137,21 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Discs/Delete/5
+        // POST: Films/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (this._discRepository == null)
+            if (this._filmRepository == null)
             {
                 return Problem("Repository class implementing 'IClientRepository' is null.");
             }
 
-            var disc = await this._discRepository.GetByIdAsync(id);
+            var film = await this._filmRepository.GetByIdAsync(id);
 
-            if (disc != null)
+            if (film != null)
             {
-                await this._discRepository.DeleteAsync(disc.Id);
+                await this._filmRepository.DeleteAsync(film.Id);
             }
 
             return RedirectToAction(nameof(Index));

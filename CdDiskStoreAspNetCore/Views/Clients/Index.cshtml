@@ -1,4 +1,5 @@
-﻿@model ClientsIndexViewModel
+﻿@using CdDiskStoreAspNetCore.Data.Models
+@model IndexViewModel<Client>
 
 @{
     ViewData["Title"] = "Index";
@@ -23,7 +24,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="FilterFieldName">Filter by:</label>
-                    @Html.DropDownList("FilterFieldName", new SelectList(ClientsIndexViewModel.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+                    @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Client>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
                 </div>
             </div>
 
@@ -46,7 +47,7 @@
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        @foreach (string field in ClientsIndexViewModel.AllFieldNames)
+                        @foreach (string field in IndexViewModel<Client>.AllFieldNames)
                         {
                             if (field != "Id")
                             {

@@ -21,7 +21,7 @@ namespace CdDiskStoreAspNetCore.Controllers
         // GET: Clients
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "FirstName", string? sortField = "Id", int skip = 0)
         {
-            var model = new ClientsIndexViewModel
+            var model = new IndexViewModel<Client>
             {
                 Filter = filter,
                 FilterFieldName = filterFieldName,

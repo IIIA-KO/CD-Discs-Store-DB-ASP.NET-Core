@@ -100,12 +100,12 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         public async Task<IReadOnlyList<Client>> GetProcessedDataAsync(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize)
         {
-            if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
+            if (filterField == null || !IndexViewModel<Client>.FilterableFieldNames.Contains(filterField))
             {
                 throw new ArgumentOutOfRangeException(nameof(filterField), "Failed to get filter condition. Client table does not have such filterable column");
             }
 
-            if (sortField == null || !ClientsIndexViewModel.AllFieldNames.Contains(sortField))
+            if (sortField == null || !IndexViewModel<Client>.AllFieldNames.Contains(sortField))
             {
                 return await this.GetAllAsync();
             }
@@ -127,7 +127,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         public async Task<int> GetProcessedDataCountAsync(string? filter, string? filterField)
         {
-            if (filterField == null || !ClientsIndexViewModel.FilterableFieldNames.Contains(filterField))
+            if (filterField == null || !IndexViewModel<Client>.FilterableFieldNames.Contains(filterField))
             {
                 return await this.CountAsync();
             }

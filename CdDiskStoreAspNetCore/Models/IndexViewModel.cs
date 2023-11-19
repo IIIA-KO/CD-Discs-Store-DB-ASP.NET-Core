@@ -4,20 +4,20 @@ using CdDiskStoreAspNetCore.Models.Interfaces.Data;
 
 namespace CdDiskStoreAspNetCore.Models
 {
-    public class ClientsIndexViewModel : IDataProcessable
+    public class IndexViewModel<T> : IDataProcessable where T : class
     {
         public static IReadOnlyList<string> AllFieldNames { get; private set; } =
-            typeof(Client).GetProperties()
-            .Select(p => p.Name)
-            .ToList();
+           typeof(T).GetProperties()
+           .Select(p => p.Name)
+           .ToList();
 
         public static IReadOnlyList<string> FilterableFieldNames { get; private set; } =
-            typeof(Client).GetProperties()
+            typeof(T).GetProperties()
             .Where(p => p.PropertyType == typeof(string))
             .Select(p => p.Name)
             .ToList();
 
-        public IEnumerable<Client>? Items { get; set; }
+        public IEnumerable<T>? Items { get; set; }
 
         public string? Filter { get; set; } = default!;
         public string? FilterFieldName { get; set; } = default!;
