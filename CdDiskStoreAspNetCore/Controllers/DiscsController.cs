@@ -4,6 +4,7 @@ using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
@@ -25,10 +26,10 @@ namespace CdDiskStoreAspNetCore.Controllers
                 FilterFieldName = filterFieldName,
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
-                Skip = skip
+                Skip = skip,
+                CountItems = await this._discRepository.GetProcessedDataCountAsync(filter, filterFieldName)
             };
 
-            model.CountItems = await this._discRepository.GetProcessedDataCountAsync(model.Filter, model.FilterFieldName);
             model.Items = await this._discRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);
@@ -37,7 +38,22 @@ namespace CdDiskStoreAspNetCore.Controllers
         // GET: Discs/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            throw new NotImplementedException();
+            if (id == null || this._discRepository == null)
+            {
+                return NotFound();
+            }
+
+            Disc disc;
+            try
+            {
+                disc = await this._discRepository.GetByIdAsync(id);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+            return View(disc);
         }
 
         // GET: Discs/Create
@@ -45,9 +61,11 @@ namespace CdDiskStoreAspNetCore.Controllers
         {
             if (id == null)
             {
+                ViewData["Action"] = "Create";
                 return View();
             }
 
+            ViewData["Action"] = "Edit";
             try
             {
                 var client = await this._discRepository.GetByIdAsync(id);
@@ -64,7 +82,7 @@ namespace CdDiskStoreAspNetCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Price")] Disc disc)
         {
-            if (!ModelState.IsValid /*&& !ValidateContactDetails(client)*/)
+            if (!ModelState.IsValid)
             {
                 return View(disc);
             }

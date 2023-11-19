@@ -17,7 +17,6 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         Task<bool> ExistsAsync(Guid id);
 
-
         Task<int> CountAsync();
         Task<int> GetProcessedDataCountAsync(string? filter, string? filterField);
         Task<IReadOnlyList<T>> GetProcessedDataAsync(string? filter, string? filterField, MySortOrder sortOrder, string? sortField, int skip, int pageSize);

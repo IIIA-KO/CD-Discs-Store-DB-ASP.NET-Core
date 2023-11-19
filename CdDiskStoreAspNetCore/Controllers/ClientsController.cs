@@ -27,10 +27,10 @@ namespace CdDiskStoreAspNetCore.Controllers
                 FilterFieldName = filterFieldName,
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
-                Skip = skip
+                Skip = skip,
+                CountItems = await this._clientRepository.GetProcessedDataCountAsync(filter, filterFieldName)
             };
 
-            model.CountItems = await this._clientRepository.GetProcessedDataCountAsync(model.Filter, model.FilterFieldName);
             model.Items = await this._clientRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);

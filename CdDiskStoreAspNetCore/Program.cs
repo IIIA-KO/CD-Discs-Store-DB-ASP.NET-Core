@@ -1,7 +1,9 @@
 using CdDiskStoreAspNetCore.Data;
 using CdDiskStoreAspNetCore.Utilities.ExtensionClasses;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace CdDiskStoreAspNetCore
 {
