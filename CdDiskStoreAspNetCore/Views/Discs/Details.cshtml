@@ -1,37 +1,32 @@
-﻿@model CdDiskStoreAspNetCore.Data.Models.Disc
+﻿@model DiscsDetailsViewModel
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<div class="container">
-    <h1 class="mb-4">Details</h1>
+<div class=“container”>
+    <h1 class=“mb-4”>Details</h1>
 
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Disc</h4>
             <hr />
 
-            <dl class="row">
-                <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.Name)
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-            </dl>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Disc.Name)</th>
+                    <td>@Html.DisplayFor(model => model.Disc.Name)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Disc.Price)</th>
+                    <td>@Html.DisplayFor(model => model.Disc.Price)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Type)</th>
+                    <td>@Html.DisplayFor(model => model.Type)</td>
+                </tr>
+            </table>
         </div>
     </div>
 
     <div class="mt-3">
-        <a asp-action="Create" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Create" asp-route-id="@Model?.Disc.Id" class="btn btn-primary">Edit</a>
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>
-
 </div>

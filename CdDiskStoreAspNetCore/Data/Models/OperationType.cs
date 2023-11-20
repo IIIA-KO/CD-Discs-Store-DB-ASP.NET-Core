@@ -7,7 +7,7 @@ namespace CdDiskStoreAspNetCore.Data.Models
     public class OperationType
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [StringLength(20)]
         public string TypeName { get; set; } = default!;

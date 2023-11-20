@@ -1,8 +1,4 @@
 ﻿@model CdDiskStoreAspNetCore.Models.ClientDetailsViewModel
-@{
-    ViewData["Title"] = "Details";
-}
-
 
 <div class="container mt-3">
     <h1 class="mb-4">Details</h1>
@@ -11,96 +7,121 @@
         <div class="card-body">
             <h4 class="card-title">Client</h4>
             <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.FirstName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.FirstName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.LastName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.LastName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.Address)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.Address)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.City)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.City)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.ContactPhone)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.ContactPhone)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.ContactMail)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.ContactMail)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.BirthDay)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.BirthDay)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.MarriedStatus)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.MarriedStatus)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.Sex)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.Sex)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Client.HasChild)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Client.HasChild)
-                </dd>
 
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PersonalDiscount)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PersonalDiscount) %
-                </dd>
-
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TotalProfit)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TotalProfit)
-                </dd>
-
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.RentProfit)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.RentProfit)
-                </dd>
-
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PurchaseProfit)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PurchaseProfit)
-                </dd>
-            </dl>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.FirstName)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.LastName)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.Address)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.City)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.City)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.ContactPhone)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.ContactPhone)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.ContactMail)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.ContactMail)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.BirthDay)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.BirthDay)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.MarriedStatus)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.MarriedStatus)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.Sex)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.Sex)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Client.HasChild)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Client.HasChild)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PersonalDiscount)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.PersonalDiscount) %
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TotalProfit)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.TotalProfit)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.RentProfit)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.RentProfit)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PurchaseProfit)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.PurchaseProfit)
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 

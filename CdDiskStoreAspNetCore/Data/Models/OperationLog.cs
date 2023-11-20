@@ -10,17 +10,14 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        public OperandType? OperationType { get; set; }
-        public int OperationTypeId { get; set; }
+        public Guid OperationTypeId { get; set; }
 
         public DateTime OperationDateTimeStart { get; set; }
 
         public DateTime OperationDateTimeEnd { get; set; }
 
-        public Client? Client { get; set; }
         public Guid IdClient { get; set; }
 
-        public Disc? Disc { get; set; }
         public Guid IdDisc { get; set; }
     }
 }

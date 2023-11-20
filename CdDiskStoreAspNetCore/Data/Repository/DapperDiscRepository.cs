@@ -4,6 +4,7 @@ using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
 using System.Data;
+using System.Data.Common;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
@@ -129,6 +130,29 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             using IDbConnection dbConnection = this._context.CreateConnection();
 
             return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Disc");
+        }
+
+        public async Task<string> GetTypeAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(DISC_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string sql = @"
+            DECLARE @Type NVARCHAR(50)
+            IF EXISTS (SELECT 1 FROM DiscMusic WHERE IdDisc = @Id)
+                SET @Type = 'Music'
+            ELSE IF EXISTS (SELECT 1 FROM DiscFilm WHERE IdDisc = @Id)
+                SET @Type = 'Film'
+            ELSE
+                SET @Type = 'Has no type'
+            SELECT @Type AS DiscType";
+
+            return await dbConnection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id })
+                ?? "Has no type";
         }
     }
 }

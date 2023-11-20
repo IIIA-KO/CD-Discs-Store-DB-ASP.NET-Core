@@ -44,17 +44,19 @@ namespace CdDiskStoreAspNetCore.Controllers
                 return NotFound();
             }
 
-            Disc disc;
             try
             {
-                disc = await this._discRepository.GetByIdAsync(id);
+                var model = new DiscsDetailsViewModel
+                {
+                    Disc = await this._discRepository.GetByIdAsync(id),
+                    Type = await this._discRepository.GetTypeAsync(id)
+                };
+                return View(model);
             }
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
             }
-
-            return View(disc);
         }
 
         // GET: Discs/Create

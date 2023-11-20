@@ -9,7 +9,6 @@ namespace CdDiskStoreAspNetCore.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        public Client? Client { get; set; }
         public Guid IdClient { get; set; }
 
         public DateTime StartDateTime { get; set; }
