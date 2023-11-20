@@ -1,13 +1,12 @@
 ﻿@using CdDiskStoreAspNetCore.Data.Models
-@model IndexViewModel<Film>
+@model IndexViewModel<Music>
 
-<h1>Films</h1>
 
 <div class="container">
 
     <div class="row mb-3">
         <div class="col-md-3">
-            <h3>Create new film</h3>
+            <h3>Create new music</h3>
         </div>
         <div class="col-md-1">
             <a asp-action="Create">
@@ -16,12 +15,12 @@
         </div>
     </div>
 
-    <form asp-controller="Films" asp-action="Index" method="post">
+    <form asp-controller="Musics" asp-action="Index" method="post">
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="FilterFieldName">Filter by:</label>
-                    @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Film>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+                    @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Music>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
                 </div>
             </div>
 
@@ -44,7 +43,7 @@
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        @foreach (var field in IndexViewModel<Film>.AllFieldNames)
+                        @foreach (var field in IndexViewModel<Music>.AllFieldNames)
                         {
                             if (field != "Id")
                             {
@@ -69,15 +68,11 @@
                                 @Html.DisplayFor(modelItem => item.Genre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Producer)
+                                @Html.DisplayFor(modelItem => item.Artist)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MainRole)
+                                @Html.DisplayFor(modelItem => item.Language)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AgeLimit)
-                            </td>
-
 
                             <td>
                                 <a asp-action="Create" asp-route-id="@item.Id">
@@ -118,7 +113,7 @@
         }
         else
         {
-            <h1>No films in database</h1>
+            <h1>No music in database</h1>
         }
 
         @{

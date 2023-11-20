@@ -1,4 +1,5 @@
 ﻿using CdDiskStoreAspNetCore.Data.Contexts;
+using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Data.Repository;
 
 namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses

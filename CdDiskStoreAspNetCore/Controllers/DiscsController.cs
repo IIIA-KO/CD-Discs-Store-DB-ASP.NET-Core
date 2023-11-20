@@ -2,8 +2,10 @@
 using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
+using CdDiskStoreAspNetCore.Utilities.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
@@ -81,7 +83,7 @@ namespace CdDiskStoreAspNetCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Price")] Disc disc)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && !ValidateDisc(disc))
             {
                 return View(disc);
             }
@@ -116,6 +118,17 @@ namespace CdDiskStoreAspNetCore.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool ValidateDisc(Disc disc)
+        {
+            if (!Regex.IsMatch(disc.Price.ToString(), PriceValidation.PricePattern))
+            {
+                ModelState.AddModelError("Price", "Incorrect price set. Price must be set in range from 0 to 0.00 to 99999999.99");
+                return false;
+            }
+
+            return true;
         }
 
         // GET: Discs/Delete/5

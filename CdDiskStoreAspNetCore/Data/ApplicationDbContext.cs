@@ -12,5 +12,6 @@ namespace CdDiskStoreAspNetCore.Data
 
         }
         public DbSet<CdDiskStoreAspNetCore.Data.Models.Film>? Film { get; set; }
+        public DbSet<CdDiskStoreAspNetCore.Data.Models.Music>? Music { get; set; }
     }
 }

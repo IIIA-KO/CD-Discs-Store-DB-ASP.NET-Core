@@ -7,55 +7,55 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
-    public class FilmsController : Controller
+    public class MusicsController : Controller
     {
-        private readonly IFilmRepository _filmRepository;
+        private readonly IMusicRepository _musicRepository;
 
-        public FilmsController(IFilmRepository filmRepository)
+        public MusicsController(IMusicRepository musicRepository)
         {
-            this._filmRepository = filmRepository;
+            this._musicRepository = musicRepository;
         }
 
-        // GET: Films
+        // GET: Musics
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
-            var model = new IndexViewModel<Film>
+            var model = new IndexViewModel<Music>
             {
                 Filter = filter,
-                FilterFieldName = filterFieldName ?? IndexViewModel<Film>.FilterableFieldNames[0],
+                FilterFieldName = filterFieldName ?? IndexViewModel<Music>.FilterableFieldNames[0],
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
                 Skip = skip,
-                CountItems = await this._filmRepository.GetProcessedDataCountAsync(filter, filterFieldName)
+                CountItems = await this._musicRepository.GetProcessedDataCountAsync(filter, filterFieldName)
             };
 
-            model.Items = await this._filmRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
+            model.Items = await this._musicRepository.GetProcessedDataAsync(model.Filter, model.FilterFieldName, model.SortOrder, model.SortFieldName, model.Skip, model.PageSize);
 
             return View(model);
         }
 
-        // GET: Films/Details/5
+        // GET: Musics/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || this._filmRepository == null)
+            if (id == null || this._musicRepository == null)
             {
                 return NotFound();
             }
 
-            Film film;
+            Music music;
             try
             {
-                film = await this._filmRepository.GetByIdAsync(id);
+                music = await this._musicRepository.GetByIdAsync(id);
             }
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
             }
 
-            return View(film);
+            return View(music);
         }
 
-        // GET: Films/Create
+        // GET: Musics/Create
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -67,7 +67,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             ViewData["Action"] = "Edit";
             try
             {
-                var film = await this._filmRepository.GetByIdAsync(id);
+                var film = await this._musicRepository.GetByIdAsync(id);
                 return View(film);
             }
             catch (NullReferenceException ex)
@@ -76,37 +76,37 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Films/Create
+        // POST: Musics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Genre,Producer,MainRole,AgeLimit")] Film film)
+        public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Genre,Artist,Language")] Music music)
         {
-            if (!ModelState.IsValid && !ValidateFilm(film))
+            if (!ModelState.IsValid)
             {
-                return View(film);
+                return View(music);
             }
 
             if (id == null)
             {
-                film.Id = Guid.NewGuid();
+                music.Id = Guid.NewGuid();
 
-                await this._filmRepository.AddAsync(film);
+                await this._musicRepository.AddAsync(music);
 
                 return RedirectToAction(nameof(Index));
             }
 
-            if (id != film.Id)
+            if (id != music.Id)
             {
                 return NotFound();
             }
 
             try
             {
-                await this._filmRepository.UpdateAsync(film);
+                await this._musicRepository.UpdateAsync(music);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await this._filmRepository.ExistsAsync(film.Id))
+                if (!await this._musicRepository.ExistsAsync(music.Id))
                 {
                     return NotFound();
                 }
@@ -118,28 +118,17 @@ namespace CdDiskStoreAspNetCore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ValidateFilm(Film film)
-        {
-            if (film.AgeLimit < 0 || film.AgeLimit > 18)
-            {
-                ModelState.AddModelError("Age limit", "Incorrect age limit set. Age limit must be set in range from 0 to 18");
-                return false;
-            }
-
-            return true;
-        }
-
-        // GET: Films/Delete/5
+        // GET: Musics/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || this._filmRepository == null)
+            if (id == null || this._musicRepository == null)
             {
                 return NotFound();
             }
 
             try
             {
-                var film = await this._filmRepository.GetByIdAsync(id);
+                var music = await this._musicRepository.GetByIdAsync(id);
                 return Ok();
             }
             catch (NullReferenceException ex)
@@ -148,21 +137,21 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Films/Delete/5
+        // POST: Musics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (this._filmRepository == null)
+            if (this._musicRepository == null)
             {
                 return Problem("Repository class implementing 'IClientRepository' is null.");
             }
 
-            var film = await this._filmRepository.GetByIdAsync(id);
+            var music = await this._musicRepository.GetByIdAsync(id);
 
-            if (film != null)
+            if (music != null)
             {
-                await this._filmRepository.DeleteAsync(film.Id);
+                await this._musicRepository.DeleteAsync(music.Id);
             }
 
             return RedirectToAction(nameof(Index));

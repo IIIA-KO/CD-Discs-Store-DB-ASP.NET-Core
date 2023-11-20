@@ -1,5 +1,4 @@
-﻿using CdDiskStoreAspNetCore.Data.Models;
-using CdDiskStoreAspNetCore.Models.Enums;
+﻿using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Models.Interfaces.Data;
 
 namespace CdDiskStoreAspNetCore.Models

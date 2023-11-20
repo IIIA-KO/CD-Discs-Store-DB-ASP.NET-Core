@@ -1,4 +1,5 @@
-﻿using CdDiskStoreAspNetCore.Models.Enums;
+﻿using CdDiskStoreAspNetCore.Data.Models;
+using CdDiskStoreAspNetCore.Models.Enums;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
