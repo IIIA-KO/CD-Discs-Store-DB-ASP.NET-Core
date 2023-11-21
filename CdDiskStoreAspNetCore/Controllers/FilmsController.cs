@@ -42,17 +42,20 @@ namespace CdDiskStoreAspNetCore.Controllers
                 return NotFound();
             }
 
-            Film film;
             try
             {
-                film = await this._filmRepository.GetByIdAsync(id);
+                var model = new FilmsDetailsViewModel
+                {
+                    Film = await this._filmRepository.GetByIdAsync(id),
+                    Discs = await this._filmRepository.GetDiscsAsync(id)
+                };
+                return View(model);
             }
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
             }
 
-            return View(film);
         }
 
         // GET: Films/Create

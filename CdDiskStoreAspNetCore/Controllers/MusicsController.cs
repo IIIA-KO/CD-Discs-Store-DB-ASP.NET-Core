@@ -42,17 +42,20 @@ namespace CdDiskStoreAspNetCore.Controllers
                 return NotFound();
             }
 
-            Music music;
             try
             {
-                music = await this._musicRepository.GetByIdAsync(id);
+                var model = new MusicsDetailsViewModel
+                {
+                    Music = await this._musicRepository.GetByIdAsync(id),
+                    Discs = await this._musicRepository.GetDiscsAsync(id)
+                };
+                return View(model);
             }
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
             }
 
-            return View(music);
         }
 
         // GET: Musics/Create

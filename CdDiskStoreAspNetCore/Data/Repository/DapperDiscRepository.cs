@@ -143,7 +143,9 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             string sql = @"
             DECLARE @Type NVARCHAR(50)
-            IF EXISTS (SELECT 1 FROM DiscMusic WHERE IdDisc = @Id)
+            IF EXISTS (SELECT 1 FROM DiscMusic WHERE IdDisc = @Id) AND EXISTS (SELECT 1 FROM DiscFilm WHERE IdDisc = @Id)
+                SET @Type = 'Music and Film'
+            ELSE IF EXISTS (SELECT 1 FROM DiscMusic WHERE IdDisc = @Id)
                 SET @Type = 'Music'
             ELSE IF EXISTS (SELECT 1 FROM DiscFilm WHERE IdDisc = @Id)
                 SET @Type = 'Film'
@@ -153,6 +155,48 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             return await dbConnection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id })
                 ?? "Has no type";
+        }
+
+        public async Task<IReadOnlyList<Film>> GetFilmsAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(DISC_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string sql = @"
+                SELECT
+                    Film.*
+                FROM
+                    Disc
+                LEFT JOIN DiscFilm ON Disc.Id = DiscFilm.IdDisc
+                LEFT JOIN Film ON DiscFilm.IdFilm = Film.Id
+                WHERE Disc.Id = @DiscId;";
+
+            return (IReadOnlyList<Film>)await dbConnection.QueryAsync<Film>(sql, new { DiscId = id });
+        }
+
+        public async Task<IReadOnlyList<Music>> GetMusicsAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(DISC_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string sql = @"
+                SELECT
+                    Music.*
+                FROM
+                    Disc
+                LEFT JOIN DiscMusic ON Disc.Id = DiscMusic.IdDisc
+                LEFT JOIN Music ON DiscMusic.IdMusic = Music.Id
+                WHERE Disc.Id = @DiscId;";
+
+            return (IReadOnlyList<Music>)await dbConnection.QueryAsync<Music>(sql, new { DiscId = id });
         }
     }
 }

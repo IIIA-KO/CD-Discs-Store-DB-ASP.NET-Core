@@ -54,6 +54,7 @@
                                 </th>
                             }
                         }
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -74,6 +75,7 @@
                                 @Html.DisplayFor(modelItem => item.Language)
                             </td>
 
+
                             <td>
                                 <a asp-action="Create" asp-route-id="@item.Id">
                                     <i class="icon-button edit-button fas fa-edit"></i>
@@ -89,7 +91,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Client to delete</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Music to delete</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">

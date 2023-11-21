@@ -51,6 +51,16 @@ namespace CdDiskStoreAspNetCore.Controllers
                     Disc = await this._discRepository.GetByIdAsync(id),
                     Type = await this._discRepository.GetTypeAsync(id)
                 };
+
+                if (model.Type.Contains("Film"))
+                {
+                    model.Films = await this._discRepository.GetFilmsAsync(id);
+                }
+
+                if(model.Type.Contains("Music"))
+                {
+                    model.Musics = await this._discRepository.GetMusicsAsync(id);
+                }
                 return View(model);
             }
             catch (NullReferenceException ex)

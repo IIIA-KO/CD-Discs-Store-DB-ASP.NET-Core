@@ -118,5 +118,26 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Music");
         }
+
+        public async Task<IReadOnlyList<Disc>> GetDiscsAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(MUSIC_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string sql = @"
+                SELECT
+                    Disc.*
+                FROM
+                    Music
+                LEFT JOIN DiscMusic ON Music.Id = DiscMusic.IdMusic
+                LEFT JOIN Disc ON DiscMusic.IdDisc = Disc.Id
+                WHERE Music.Id = @MusicId;";
+
+            return (IReadOnlyList<Disc>)await dbConnection.QueryAsync<Disc>(sql, new { MusicId = id });
+        }
     }
 }

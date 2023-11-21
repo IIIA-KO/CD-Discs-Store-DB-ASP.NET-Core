@@ -117,5 +117,26 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Film");
         }
+
+        public async Task<IReadOnlyList<Disc>> GetDiscsAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(FILM_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            string sql = @"
+                SELECT
+                    Disc.*
+                FROM
+                    Film
+                LEFT JOIN DiscFilm ON Film.Id = DiscFilm.IdFilm
+                LEFT JOIN Disc ON DiscFilm.IdDisc = Disc.Id
+                WHERE Film.Id = @FilmId;";
+
+            return (IReadOnlyList<Disc>)await dbConnection.QueryAsync<Disc>(sql, new { FilmId = id });
+        }
     }
 }
