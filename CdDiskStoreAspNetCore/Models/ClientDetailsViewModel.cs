@@ -1,5 +1,6 @@
 ﻿using CdDiskStoreAspNetCore.Data.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace CdDiskStoreAspNetCore.Models
 {
@@ -17,5 +18,8 @@ namespace CdDiskStoreAspNetCore.Models
         public decimal TotalProfit { get; set; }
 
         public int PersonalDiscount { get; set; }
+
+        public IReadOnlyList<string> ContactMails { get; set; } = default!;
+        public IReadOnlyList<string> ContactPhones { get; set; } = default!;
     }
 }

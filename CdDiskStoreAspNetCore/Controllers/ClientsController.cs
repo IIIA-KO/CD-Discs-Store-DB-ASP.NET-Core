@@ -3,6 +3,7 @@ using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Utilities.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
@@ -52,7 +53,9 @@ namespace CdDiskStoreAspNetCore.Controllers
                     PersonalDiscount = await this._clientRepository.GetPersonalDiscountAsync(id),
                     RentProfit = await this._clientRepository.GetTotalRentProfitAsync(id),
                     PurchaseProfit = await this._clientRepository.GetTotalPurchaseProfitAsync(id),
-                    TotalProfit = await this._clientRepository.GetTotalProfitAsync(id)
+                    TotalProfit = await this._clientRepository.GetTotalProfitAsync(id),
+                    ContactPhones = await this._clientRepository.GetPhonesAsync(id),
+                    ContactMails = await this._clientRepository.GetMailsAsync(id)
                 };
 
                 return View(model);

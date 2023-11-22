@@ -146,13 +146,13 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await dbConnection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM Client");
         }
 
-        public async Task<int> GetPersonalDiscountAsync(Guid? clientId)
+        public async Task<int> GetPersonalDiscountAsync(Guid? id)
         {
             Client client;
 
             try
             {
-                client = await this.GetByIdAsync(clientId);
+                client = await this.GetByIdAsync(id);
             }
             catch (NullReferenceException)
             {
@@ -161,43 +161,67 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return await dbConnection.QueryFirstOrDefaultAsync<int>("SELECT TOP 1 PersonalDiscountValue FROM PersonalDiscount WHERE idClient = @id ORDER BY StartDateTime DESC", new { id = clientId });
+            return await dbConnection.QueryFirstOrDefaultAsync<int>("SELECT TOP 1 PersonalDiscountValue FROM PersonalDiscount WHERE idClient = @Id ORDER BY StartDateTime DESC", new { Id = id });
         }
 
-        public async Task<decimal> GetTotalPurchaseProfitAsync(Guid? clientId)
+        public async Task<decimal> GetTotalPurchaseProfitAsync(Guid? id)
         {
-            if (clientId is null)
+            if (id is null)
             {
                 throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
             }
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PURCHASE_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
+            return await dbConnection.ExecuteScalarAsync<decimal>("SELECT dbo.FN_GET_TOTAL_PURCHASE_PROFIT_FROM_CLIENT(@id)", new { Id = id });
         }
 
-        public async Task<decimal> GetTotalRentProfitAsync(Guid? clientId)
+        public async Task<decimal> GetTotalRentProfitAsync(Guid? id)
         {
-            if (clientId is null)
+            if (id is null)
             {
                 throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
             }
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_RENT_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
+            return await dbConnection.ExecuteScalarAsync<decimal>("SELECT dbo.FN_GET_TOTAL_RENT_PROFIT_FROM_CLIENT(@Id)", new { Id = id });
         }
 
-        public async Task<decimal> GetTotalProfitAsync(Guid? clientId)
+        public async Task<decimal> GetTotalProfitAsync(Guid? id)
         {
-            if (clientId is null)
+            if (id is null)
             {
                 throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
             }
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return await dbConnection.ExecuteScalarAsync<decimal>($"SELECT dbo.FN_GET_TOTAL_PROFIT_FROM_CLIENT(@id)", new { id = clientId });
+            return await dbConnection.ExecuteScalarAsync<decimal>("SELECT dbo.FN_GET_TOTAL_PROFIT_FROM_CLIENT(@Id)", new { Id = id });
+        }
+
+        public async Task<IReadOnlyList<string>> GetMailsAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return (IReadOnlyList<string>)await dbConnection.QueryAsync<string>("SELECT Mail FROM MailList WHERE IdClient = @Id", new {Id = id });
+        }
+
+        public async Task<IReadOnlyList<string>> GetPhonesAsync(Guid? id)
+        {
+            if (id is null)
+            {
+                throw new NullReferenceException(CLIENT_NOT_FOUND_BY_ID_ERROR);
+            }
+
+            using IDbConnection dbConnection = this._context.CreateConnection();
+
+            return (IReadOnlyList<string>)await dbConnection.QueryAsync<string>("SELECT Phone FROM PhoneList WHERE IdClient = @Id", new { Id = id });
         }
     }
 }
