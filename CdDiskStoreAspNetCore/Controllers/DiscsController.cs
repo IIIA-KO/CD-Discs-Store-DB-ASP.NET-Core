@@ -19,12 +19,12 @@ namespace CdDiskStoreAspNetCore.Controllers
         }
 
         // GET: Discs
-        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName = "Name", string? sortField = "Id", int skip = 0)
+        public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
             var model = new IndexViewModel<Disc>
             {
                 Filter = filter,
-                FilterFieldName = filterFieldName,
+                FilterFieldName = filterFieldName ?? IndexViewModel<Disc>.FilterableFieldNames[0],
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
                 Skip = skip,

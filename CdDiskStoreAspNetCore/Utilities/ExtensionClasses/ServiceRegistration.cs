@@ -1,6 +1,8 @@
-﻿using CdDiskStoreAspNetCore.Data.Contexts;
-using CdDiskStoreAspNetCore.Data.Models;
+﻿using CdDiskStoreAspNetCore.Data;
+using CdDiskStoreAspNetCore.Data.Contexts;
 using CdDiskStoreAspNetCore.Data.Repository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
 {
@@ -13,6 +15,15 @@ namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
             services.AddScoped<IDiscRepository, DapperDiscRepository>();
             services.AddScoped<IMusicRepository, DapperMusicRepository>();
             services.AddScoped<IFilmRepository, DapperFilmRepository>();
+
+            services.AddTransient<UserManager<IdentityUser>>();
+            services.AddTransient<SignInManager<IdentityUser>>();
+            services.AddTransient<RoleManager<IdentityRole>>();
+
+            services.AddScoped<IUserStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
+            services.AddScoped<IUserEmailStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
+
+            services.AddScoped<IIdentityUserRepository, EFIdentityUserRepository>();
         }
     }
 }

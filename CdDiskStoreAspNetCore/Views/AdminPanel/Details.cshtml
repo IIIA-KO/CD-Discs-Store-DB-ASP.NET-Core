@@ -1,0 +1,86 @@
+﻿@model CdDiskStoreAspNetCore.Models.AdminPanelDetailsViewModel
+
+<div class="container mt-3">
+    <h1 class="mb-4">Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Website User</h4>
+            <hr />
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.User.UserName)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.User.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.User.Email)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.User.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.User.EmailConfirmed)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.User.EmailConfirmed)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.User.PhoneNumber)
+                    </th>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.User.PhoneNumber)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <br />
+
+    @if (Model.Roles != null && Model.Roles.Any())
+    {
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Roles</h4>
+                <hr />
+
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => Model.Roles)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Roles)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-action="Create" asp-route-id="@Model?.User.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

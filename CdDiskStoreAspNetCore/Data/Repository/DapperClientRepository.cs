@@ -3,10 +3,8 @@ using CdDiskStoreAspNetCore.Data.Models;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using Dapper;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
@@ -209,7 +207,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
             using IDbConnection dbConnection = this._context.CreateConnection();
 
-            return (IReadOnlyList<string>)await dbConnection.QueryAsync<string>("SELECT Mail FROM MailList WHERE IdClient = @Id", new {Id = id });
+            return (IReadOnlyList<string>)await dbConnection.QueryAsync<string>("SELECT Mail FROM MailList WHERE IdClient = @Id", new { Id = id });
         }
 
         public async Task<IReadOnlyList<string>> GetPhonesAsync(Guid? id)
