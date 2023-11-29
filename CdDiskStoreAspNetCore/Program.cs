@@ -27,6 +27,8 @@ namespace CdDiskStoreAspNetCore
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            builder.Services.AddAuthentication();
+
             builder.Services.AddControllersWithViews();
 
 

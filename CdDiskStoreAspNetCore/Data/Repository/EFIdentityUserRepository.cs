@@ -41,7 +41,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         public async Task<bool> AddAsync(IdentityUser entity, string password, IReadOnlyList<string> roles)
         {
-            await this._userStore.SetUserNameAsync(entity, entity.UserName.ToLower(), CancellationToken.None);
+            await this._userStore.SetUserNameAsync(entity, entity.Email, CancellationToken.None);
             await this._userEmailStore.SetEmailAsync(entity, entity.Email, CancellationToken.None);
 
             var result = await _userManager.CreateAsync(entity, password);
