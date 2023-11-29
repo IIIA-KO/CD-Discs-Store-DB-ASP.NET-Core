@@ -9,7 +9,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
 
         Task<IReadOnlyList<IdentityUser>> GetAllAsync();
 
-        Task<bool> AddAsync(IdentityUser entity, string password);
+        Task<bool> AddAsync(IdentityUser entity, string password, IReadOnlyList<string> roles);
 
         Task<bool> UpdateAsync(IdentityUser entity, IReadOnlyList<string> roles);
 

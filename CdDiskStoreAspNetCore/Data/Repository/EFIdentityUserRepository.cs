@@ -39,15 +39,15 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             return await this._context.Users.ToListAsync();
         }
 
-        public async Task<bool> AddAsync(IdentityUser entity, string password)
+        public async Task<bool> AddAsync(IdentityUser entity, string password, IReadOnlyList<string> roles)
         {
-            await this._userStore.SetUserNameAsync(entity, entity.UserName, CancellationToken.None);
+            await this._userStore.SetUserNameAsync(entity, entity.UserName.ToLower(), CancellationToken.None);
             await this._userEmailStore.SetEmailAsync(entity, entity.Email, CancellationToken.None);
 
             var result = await _userManager.CreateAsync(entity, password);
             if (!result.Succeeded)
             {
-                throw new Exception($"Error create user {entity.Email} with password {password}");
+                throw new Exception($"Error create user {entity.Email} with password {password}\nErrors:\n{string.Join('\n', result.Errors.Select(e => e.Description))}");
             }
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(entity);
@@ -58,8 +58,6 @@ namespace CdDiskStoreAspNetCore.Data.Repository
             }
 
             entity = await _userManager.FindByNameAsync(entity.UserName);
-
-            var roles = await this.GetAllRolesAsync();
 
             if (roles != null && roles.Count > 0)
             {

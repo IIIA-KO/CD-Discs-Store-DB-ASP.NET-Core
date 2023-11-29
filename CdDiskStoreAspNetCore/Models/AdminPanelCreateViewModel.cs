@@ -14,6 +14,7 @@ namespace CdDiskStoreAspNetCore.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "The password must be at least 6 and at max 100 characters long.", MinimumLength = 6)]
+        [PasswordValidation]
         public string Password { get; set; } = default!;
 
         [Required]
