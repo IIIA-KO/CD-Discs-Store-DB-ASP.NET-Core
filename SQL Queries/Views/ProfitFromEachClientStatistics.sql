@@ -11,8 +11,8 @@ AS
 		Client.FirstName as ClientName,
 		YEAR(OperationDateTimeStart) AS OrderYear,
 		CASE
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Покупка фільмів'
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Оренда фільмів'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Film Purchase'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Film Rent'
 		END AS PurchaseType,
 		CASE
 			WHEN OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')
@@ -35,8 +35,8 @@ AS
 		Client.FirstName as ClientName,
 		YEAR(OperationDateTimeStart) AS OrderYear,
 		CASE
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Покупка музики'
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Оренда музики'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Music Purchase'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Music Rent'
 		END AS PurchaseType,
 		CASE
 			WHEN OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')
@@ -58,12 +58,12 @@ SELECT
 	ClientId,
 	ClientName,
 	OrderYear,
-	[Покупка музики], [Оренда музики], [Покупка фільмів], [Оренда фільмів]
+	[Music Purchase], [Music Rent], [Film Purchase], [Film Rent]
 FROM CTE_PROFIT_FOR_EACH_PURCHASE_TYPE
 PIVOT
 (
 	Sum(Profit)
-	FOR PurchaseType IN ([Покупка музики], [Оренда музики], [Покупка фільмів], [Оренда фільмів])
+	FOR PurchaseType IN ([Music Purchase], [Music Rent], [Film Purchase], [Film Rent])
 ) as PIVOT_PURCHASE_TYPE_PROFIT
 ORDER BY ClientId, ClientName, OrderYear OFFSET 0 ROWS
 
