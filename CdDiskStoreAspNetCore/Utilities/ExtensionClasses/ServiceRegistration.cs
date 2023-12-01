@@ -23,7 +23,13 @@ namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
             services.AddScoped<IUserStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
             services.AddScoped<IUserEmailStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
 
-            services.AddScoped<IIdentityUserRepository, EFIdentityUserRepository>();
+            services.AddScoped<IIdentityUserRepository, IdentityUserRepository>();
+
+            services.AddScoped<IDebtorsRepository, DapperDebtorRepository>();
+            services.AddScoped<IQuarterIncomeRepository, DapperQuarterIncomeRepository>();
+            services.AddScoped<IProfitFromClientRepository, DapperProfitFromClientRepository>();
+            services.AddScoped<IUselessDiscsRepository, DapperUselessDiscsRepository>();
+            services.AddScoped<IAdultFilmRatioRepository, DapperAdultFilmRatioRepository>();
         }
     }
 }

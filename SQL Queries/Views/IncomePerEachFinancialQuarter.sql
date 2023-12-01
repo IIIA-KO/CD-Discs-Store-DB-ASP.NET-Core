@@ -8,10 +8,10 @@ AS
 	SELECT
 		YEAR(OperationDateTimeStart) AS OrderYear,
 		CASE
-			WHEN DATEPART(Quarter, OperationDateTimeStart) = 1 THEN '1 quarter'
-			WHEN DATEPART(Quarter, OperationDateTimeStart) = 2 THEN '2 quarter'
-			WHEN DATEPART(Quarter, OperationDateTimeStart) = 3 THEN '3 quarter'
-			WHEN DATEPART(Quarter, OperationDateTimeStart) = 4 THEN '4 quarter'
+			WHEN DATEPART(Quarter, OperationDateTimeStart) = 1 THEN 'Quarter1'
+			WHEN DATEPART(Quarter, OperationDateTimeStart) = 2 THEN 'Quarter2'
+			WHEN DATEPART(Quarter, OperationDateTimeStart) = 3 THEN 'Quarter3'
+			WHEN DATEPART(Quarter, OperationDateTimeStart) = 4 THEN 'Quarter4'
 		END AS DateQuarter,
 		CASE
 			WHEN OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')
@@ -29,12 +29,12 @@ AS
 )
 SELECT
 	OrderYear,
-	[1 quarter], [2 quarter], [3 quarter], [4 quarter]
+	[Quarter1], [Quarter2], [Quarter3], [Quarter4]
 FROM CTE_PROFIT_PER_EACH_QUARTER
 PIVOT
 (
 	Sum(profit)
-	FOR DateQuarter IN ([1 quarter], [2 quarter], [3 quarter], [4 quarter])
+	FOR DateQuarter IN ([Quarter1], [Quarter2], [Quarter3], [Quarter4])
 ) as PIVOT_QUARTER_PROFIT
 
 GO

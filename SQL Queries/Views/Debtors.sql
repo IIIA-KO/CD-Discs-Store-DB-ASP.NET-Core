@@ -5,7 +5,7 @@ CREATE VIEW ACTIVE_DEBTORS_VIEW AS
 SELECT
 	Client.Id,
 	Client.FirstName + ' ' + Client.LastName AS FullName,
-	CAST(DATEADD(Month, 1, OperationLog.OperationDateTimeStart) AS DATE) AS 'In debt from',
+	CAST(DATEADD(Month, 1, OperationLog.OperationDateTimeStart) AS DATE) AS InDebtFrom,
 	CAST(GETDATE() AS DATE) AS 'to'
 FROM OperationLog
 	INNER JOIN Client
@@ -13,7 +13,7 @@ FROM OperationLog
 WHERE DATEDIFF(Month, OperationDateTimeStart, GETDATE()) > 1
 		AND OperationLog.OperationDateTimeEnd IS NULL
 		AND OperationLog.OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')
-ORDER BY Client.Id, [In debt from] OFFSET 0 ROWS
+ORDER BY Client.Id, InDebtFrom OFFSET 0 ROWS
 
 GO
 SELECT * FROM ACTIVE_DEBTORS_VIEW

@@ -11,8 +11,8 @@ AS
 		Client.FirstName as ClientName,
 		YEAR(OperationDateTimeStart) AS OrderYear,
 		CASE
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Film Purchase'
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'Film Rent'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'FilmPurchase'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscFilm)) THEN 'FilmRent'
 		END AS PurchaseType,
 		CASE
 			WHEN OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')
@@ -23,7 +23,7 @@ AS
 			ON OperationLog.IdClient = Client.Id 
 		INNER JOIN Disc 
 			ON OperationLog.IdDisc = Disc.Id 
-		INNER JOIN DiscFilm
+		INNER JOIN DiscFilm	
 			ON DiscFilm.IdDisc = Disc.Id
 		INNER JOIN Film
 			ON Film.Id = DiscFilm.IdFilm
@@ -35,8 +35,8 @@ AS
 		Client.FirstName as ClientName,
 		YEAR(OperationDateTimeStart) AS OrderYear,
 		CASE
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Music Purchase'
-			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'Music Rent'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')	AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'MusicPurchase'
+			WHEN (OperationType = (SELECT Id FROM OperationType Where TypeName = 'Rent')		AND Disc.Id IN(SELECT IdDisc FROM DiscMusic))	THEN 'MusicRent'
 		END AS PurchaseType,
 		CASE
 			WHEN OperationType = (SELECT Id FROM OperationType Where TypeName = 'Purchase')
@@ -58,12 +58,12 @@ SELECT
 	ClientId,
 	ClientName,
 	OrderYear,
-	[Music Purchase], [Music Rent], [Film Purchase], [Film Rent]
+	[MusicPurchase], [MusicRent], [FilmPurchase], [FilmRent]
 FROM CTE_PROFIT_FOR_EACH_PURCHASE_TYPE
 PIVOT
 (
 	Sum(Profit)
-	FOR PurchaseType IN ([Music Purchase], [Music Rent], [Film Purchase], [Film Rent])
+	FOR PurchaseType IN ([MusicPurchase], [MusicRent], [FilmPurchase], [FilmRent])
 ) as PIVOT_PURCHASE_TYPE_PROFIT
 ORDER BY ClientId, ClientName, OrderYear OFFSET 0 ROWS
 

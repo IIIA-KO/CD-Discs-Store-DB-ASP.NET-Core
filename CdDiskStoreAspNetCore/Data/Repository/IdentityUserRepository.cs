@@ -7,7 +7,7 @@ using System.Data;
 
 namespace CdDiskStoreAspNetCore.Data.Repository
 {
-    public class EFIdentityUserRepository : IIdentityUserRepository
+    public class IdentityUserRepository : IIdentityUserRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
@@ -15,7 +15,7 @@ namespace CdDiskStoreAspNetCore.Data.Repository
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _userEmailStore;
 
-        public EFIdentityUserRepository(
+        public IdentityUserRepository(
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,

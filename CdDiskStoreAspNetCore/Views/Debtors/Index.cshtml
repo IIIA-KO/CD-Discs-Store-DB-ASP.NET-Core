@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CdDiskStoreAspNetCore.Data.Repository;
+@model IndexViewModel<Debtor>
+@inject SignInManager<IdentityUser> SignInManger
+
+@if (!SignInManger.IsSignedIn(User))
+{
+    <h1 style="color: red;">ACCESS DENIED</h1>
+}
+else
+{
+    <h1>Debtors</h1>
+
+    <div class="container">
+        <div class="container">
+            <form asp-controller="AdminPanel" asp-action="Index" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="FilterFieldName">Filter by:</label>
+                            @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Debtor>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="filter">Filter:</label>
+                            <input type="text" id="filter" name="filter" value="@Model.Filter" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 d-grid">
+                        <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row" style="width: 80vw;">
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "FullName" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "In Debt From" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "In Debt To" });
+                                }
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InDebtFrom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.To)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1>No debtors in the database</h1>
+            }
+
+            @{
+                await Html.RenderPartialAsync("_Pagination", Model);
+            }
+        </div>
+
+    </div>
+}

@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CdDiskStoreAspNetCore.Data.Repository;
+@model IndexViewModel<QuarterIncome>
+@inject SignInManager<IdentityUser> SignInManger
+
+@if (!SignInManger.IsSignedIn(User))
+{
+    <h1 style="color: red;">ACCESS DENIED</h1>
+}
+else
+{
+    <h1>Quarter Incomes</h1>
+
+    <div class="container">
+        <div class="row" style="width: 80vw;">
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "OrderYear" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Quarter1" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Quarter2" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Quarter3" });
+                                }
+                            </th>
+                            <th>
+                                @{
+                                    await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = "Quarter4" });
+                                }
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderYear)
+                                </td>
+                                <td>
+                                    @string.Format("{0:C2}", item.Quarter1)
+                                </td>
+                                <td>
+                                    @string.Format("{0:C2}", item.Quarter2)
+                                </td>
+                                <td>
+                                    @string.Format("{0:C2}", item.Quarter3)
+                                </td>
+                                <td>
+                                    @string.Format("{0:C2}", item.Quarter4)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1>No data in the database</h1>
+            }
+
+            @{
+                await Html.RenderPartialAsync("_Pagination", Model);
+            }
+        </div>
+    </div>
+}
