@@ -1,9 +1,14 @@
-﻿@model CdDiskStoreAspNetCore.Data.Models.Music
+﻿@inject SignInManager<IdentityUser> SignInManger
+@model CdDiskStoreAspNetCore.Data.Models.Music
 
 @{
     string action = ViewData["Action"] as string;
 }
 
+@if (!SignInManger.IsSignedIn(User) || !User.IsInRole("Administrator") || !User.IsInRole("Manager"))
+{
+    <h1 style="color: red;">ACCESS DENIED</h1>
+}
 <div class="container">
     <h1>@action</h1>
 

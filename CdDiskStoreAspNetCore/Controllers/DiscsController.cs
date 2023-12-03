@@ -3,12 +3,14 @@ using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Utilities.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize]
     public class DiscsController : Controller
     {
         private readonly IDiscRepository _discRepository;
@@ -18,7 +20,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             this._discRepository = discRepository;
         }
 
-        // GET: Discs
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
             var model = new IndexViewModel<Disc>
@@ -36,7 +37,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             return View(model);
         }
 
-        // GET: Discs/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || this._discRepository == null)
@@ -69,7 +69,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // GET: Discs/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -90,9 +90,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Discs/Creates
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Price")] Disc disc)
         {
             if (!ModelState.IsValid && !ValidateDisc(disc))
@@ -143,7 +143,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             return true;
         }
 
-        // GET: Discs/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || this._discRepository == null)
@@ -162,9 +162,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Discs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (this._discRepository == null)

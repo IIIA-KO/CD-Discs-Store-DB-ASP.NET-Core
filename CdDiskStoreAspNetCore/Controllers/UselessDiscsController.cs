@@ -2,9 +2,11 @@
 using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UselessDiscsController : Controller
     {
         private readonly IUselessDiscsRepository _uselessDiscsRepository;

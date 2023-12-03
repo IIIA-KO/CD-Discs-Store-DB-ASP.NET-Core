@@ -1,4 +1,5 @@
 ﻿@using CdDiskStoreAspNetCore.Data.Models
+@inject SignInManager<IdentityUser> SignInManger
 @model IndexViewModel<Client>
 
 @{
@@ -8,16 +9,19 @@
 <h1>Сlients</h1>
 
 <div class="container">
-    <div class="row mb-3">
-        <div class="col-md-3">
-            <h3>Create new client</h3>
+    @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+    {
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <h3>Create new client</h3>
+            </div>
+            <div class="col-md-1">
+                <a asp-action="Create">
+                    <i class="icon-button add-button fas fa-plus"></i>
+                </a>
+            </div>
         </div>
-        <div class="col-md-1">
-            <a asp-action="Create">
-                <i class="icon-button add-button fas fa-plus"></i>
-            </a>
-        </div>
-    </div>
+    }
 
     <form asp-controller="Clients" asp-action="Index" method="post">
         <div class="row mb-3">
@@ -98,39 +102,45 @@
                             </td>
 
                             <td>
-                                <a asp-action="Create" asp-route-id="@item.Id">
-                                    <i class="icon-button edit-button fas fa-edit"></i>
-                                </a>
+                                @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+                                {
+                                    <a asp-action="Create" asp-route-id="@item.Id">
+                                        <i class="icon-button edit-button fas fa-edit"></i>
+                                    </a>
+                                }
 
                                 <a asp-action="Details" asp-route-id="@item.Id">
                                     <i class="icon-button details-button fas fa-eye"></i>
                                 </a>
 
-                                <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
+                                @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+                                {
+                                    <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
 
-                                <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Client to delete</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @{
-                                                    string clientFullName = item.FirstName + " " + item.LastName;
-                                                }
-                                                @Html.DisplayFor(modelItem => clientFullName)
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
-                                                    <input type="hidden" asp-for="@item.Id" />
-                                                    <input type="submit" value="Delete" class="btn btn-danger" />
-                                                </form>
+                                    <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Client to delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @{
+                                                        string clientFullName = item.FirstName + " " + item.LastName;
+                                                    }
+                                                    @Html.DisplayFor(modelItem => clientFullName)
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                                        <input type="hidden" asp-for="@item.Id" />
+                                                        <input type="submit" value="Delete" class="btn btn-danger" />
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </td>
                         </tr>
                     }

@@ -3,7 +3,7 @@
 @model IndexViewModel<Debtor>
 @inject SignInManager<IdentityUser> SignInManger
 
-@if (!SignInManger.IsSignedIn(User))
+@if (!SignInManger.IsSignedIn(User) || !User.IsInRole("Administrator"))
 {
     <h1 style="color: red;">ACCESS DENIED</h1>
 }

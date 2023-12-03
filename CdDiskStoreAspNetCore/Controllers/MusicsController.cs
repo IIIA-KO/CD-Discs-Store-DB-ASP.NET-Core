@@ -2,11 +2,13 @@
 using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize]
     public class MusicsController : Controller
     {
         private readonly IMusicRepository _musicRepository;
@@ -16,7 +18,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             this._musicRepository = musicRepository;
         }
 
-        // GET: Musics
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
             var model = new IndexViewModel<Music>
@@ -34,7 +35,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             return View(model);
         }
 
-        // GET: Musics/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || this._musicRepository == null)
@@ -58,7 +58,7 @@ namespace CdDiskStoreAspNetCore.Controllers
 
         }
 
-        // GET: Musics/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -79,9 +79,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Musics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Genre,Artist,Language")] Music music)
         {
             if (!ModelState.IsValid)
@@ -121,7 +121,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Musics/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || this._musicRepository == null)
@@ -140,9 +140,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Musics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (this._musicRepository == null)

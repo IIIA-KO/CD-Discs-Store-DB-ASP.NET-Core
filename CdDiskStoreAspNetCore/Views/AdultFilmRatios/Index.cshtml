@@ -3,13 +3,13 @@
 @model IndexViewModel<AdultFilmRatio>
 @inject SignInManager<IdentityUser> SignInManger
 
-@if (!SignInManger.IsSignedIn(User))
+@if (!SignInManger.IsSignedIn(User) || !User.IsInRole("Administrator"))
 {
     <h1 style="color: red;">ACCESS DENIED</h1>
 }
 else
 {
-    <h1>Debtors</h1>
+    <h1>18+ Films Ratios</h1>
 
     <div class="container">
         <div class="container">
@@ -169,7 +169,7 @@ else
             }
             else
             {
-                <h1>No debtors in the database</h1>
+                <h1>No data in the database</h1>
             }
 
             @{

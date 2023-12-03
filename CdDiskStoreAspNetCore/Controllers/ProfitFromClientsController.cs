@@ -1,10 +1,12 @@
 ﻿using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ProfitFromClientsController : Controller
     {
         private readonly IProfitFromClientRepository _profitFromClientRepository;

@@ -2,11 +2,13 @@
 using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize]
     public class FilmsController : Controller
     {
         private readonly IFilmRepository _filmRepository;
@@ -16,7 +18,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             this._filmRepository = filmRepository;
         }
 
-        // GET: Films
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
             var model = new IndexViewModel<Film>
@@ -34,7 +35,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             return View(model);
         }
 
-        // GET: Films/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || this._filmRepository == null)
@@ -58,7 +58,7 @@ namespace CdDiskStoreAspNetCore.Controllers
 
         }
 
-        // GET: Films/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -79,9 +79,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Films/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Genre,Producer,MainRole,AgeLimit")] Film film)
         {
             if (!ModelState.IsValid && !ValidateFilm(film))
@@ -132,7 +132,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             return true;
         }
 
-        // GET: Films/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || this._filmRepository == null)
@@ -151,9 +151,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Films/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (this._filmRepository == null)

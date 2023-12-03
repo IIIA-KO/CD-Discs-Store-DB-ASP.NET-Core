@@ -3,12 +3,14 @@ using CdDiskStoreAspNetCore.Data.Repository;
 using CdDiskStoreAspNetCore.Models;
 using CdDiskStoreAspNetCore.Models.Enums;
 using CdDiskStoreAspNetCore.Utilities.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
+    [Authorize(Roles = "Administrator, Manager, User")]
     public class ClientsController : Controller
     {
         private readonly IClientRepository _clientRepository;
@@ -18,7 +20,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             this._clientRepository = clientRepository;
         }
 
-        // GET: Clients
         public async Task<IActionResult> Index(string? filter, MySortOrder sortOrder, string? filterFieldName, string? sortField = "Id", int skip = 0)
         {
             var model = new IndexViewModel<Client>
@@ -36,7 +37,6 @@ namespace CdDiskStoreAspNetCore.Controllers
             return View(model);
         }
 
-        // GET: Clients/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || this._clientRepository == null)
@@ -65,7 +65,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // GET: Clients/Create
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -86,9 +86,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Clients/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,FirstName,LastName,Address,City,ContactPhone,ContactMail,BirthDay,MarriedStatus,Sex,HasChild")] Client client)
         {
             if (!ModelState.IsValid && !ValidateContactDetails(client))
@@ -145,7 +145,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             return true;
         }
 
-        // GET: Clients/Delete/5
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || this._clientRepository == null)
@@ -164,9 +164,9 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (this._clientRepository == null)

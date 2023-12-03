@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CdDiskStoreAspNetCore.Controllers
 {
-    [Authorize(Roles = "Administrator, Manager")]
+    [Authorize(Roles = "Administrator")]
     public class QuarterIncomesController : Controller
     {
         private readonly IQuarterIncomeRepository _quarterIncomeRepository;

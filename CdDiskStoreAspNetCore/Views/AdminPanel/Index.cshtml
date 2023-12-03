@@ -1,9 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model IndexViewModel<IdentityUser>
 @inject SignInManager<IdentityUser> SignInManger
-@inject UserManager<IdentityUser> UserManager
+@model IndexViewModel<IdentityUser>
 
-@if (!SignInManger.IsSignedIn(User))
+@if (!SignInManger.IsSignedIn(User) || !User.IsInRole("Administrator"))
 {
     <h1 style="color: red;">ACCESS DENIED</h1>
 }

@@ -28,11 +28,3 @@ BEGIN
 	END
 END
 GO
-
-SELECT
-	TOP 1 PersonalDiscountValue 
-FROM PersonalDiscount 
-WHERE idClient = 'D7BE63E5-0A4F-4DA4-ABE7-02648D8EE65C'
-ORDER BY StartDateTime DESC
-
-select * from Client

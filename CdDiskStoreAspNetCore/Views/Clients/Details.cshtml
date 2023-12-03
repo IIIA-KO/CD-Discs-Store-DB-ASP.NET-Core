@@ -234,7 +234,10 @@
         }
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a asp-action="Create" asp-route-id="@Model?.Client.Id" class="btn btn-primary me-md-2">Edit</a>
+            @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+            {
+                <a asp-action="Create" asp-route-id="@Model?.Client.Id" class="btn btn-primary me-md-2">Edit</a>
+            }
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
         </div>
     </div>

@@ -1,128 +1,145 @@
 ﻿@using CdDiskStoreAspNetCore.Data.Models
-@model IndexViewModel<Disc>
 @inject SignInManager<IdentityUser> SignInManger
+@model IndexViewModel<Disc>
 
-<div class="container">
-    <h1>Discs</h1>
 
-    <div class="row mb-3">
-        <div class="col-md-3">
-            <h3>Create new disc</h3>
-        </div>
-        <div class="col-md-1">
-            <a asp-action="Create">
-                <i class="icon-button add-button fas fa-plus"></i>
-            </a>
-        </div>
+@if (!SignInManger.IsSignedIn(User))
+{
+    <h1 style="color: red;">ACCESS DENIED</h1>
+}
+else
+{
+    <div class="container">
+        <h1>Discs</h1>
 
-        @if (SignInManger.IsSignedIn(User) && User.IsInRole("Administrator"))
-        {
-            <div class="col-md-3">
-                <form method="post" asp-controller="ChangeDiscTypePrice" asp-action="Index">
-                    <input type="submit" class="btn btn-primary mb-2 w-100" value="Change Disc Type Price" />
-                </form>
-            </div>
-        }
-    </div>
-
-    <form asp-controller="Discs" asp-action="Index" method="post">
         <div class="row mb-3">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="FilterFieldName">Filter by:</label>
-                    @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Disc>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+            @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+            {
+                <div class="col-md-3">
+                    <h3>Create new disc</h3>
                 </div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="form-group">
-                    <label for="filter">Filter:</label>
-                    <input type="text" id="filter" name="filter" value="@Model.Filter" class="form-control" />
+                <div class="col-md-1">
+                    <a asp-action="Create">
+                        <i class="icon-button add-button fas fa-plus"></i>
+                    </a>
                 </div>
-            </div>
+            }
 
-            <div class="col-md-3 d-grid">
-                <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
-            </div>
+            @if (SignInManger.IsSignedIn(User) && User.IsInRole("Administrator"))
+            {
+                <div class="col-md-3">
+                    <form method="post" asp-controller="ChangeDiscTypePrice" asp-action="Index">
+                        <input type="submit" class="btn btn-primary mb-2 w-100" value="Change Disc Type Price" />
+                    </form>
+                </div>
+            }
         </div>
-    </form>
 
-    <div class="row" style="width: 80vw;">
-        @if (Model.Items != null && Model.Items.Any())
-        {
-            <table class="table table-responsive">
-                <thead>
-                    <tr>
-                        @foreach (var field in IndexViewModel<Disc>.AllFieldNames)
-                        {
-                            if (field != "Id")
-                            {
-                                <th>
-                                    @{
-                                        await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = field });
-                                    }
-                                </th>
-                            }
-                        }
-                        <th></th>
-                    </tr>
-                </thead>
+        <form asp-controller="Discs" asp-action="Index" method="post">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="FilterFieldName">Filter by:</label>
+                        @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<Disc>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
+                    </div>
+                </div>
 
-                <tbody>
-                    @foreach (var item in Model.Items)
-                    {
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="filter">Filter:</label>
+                        <input type="text" id="filter" name="filter" value="@Model.Filter" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 d-grid">
+                    <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
+                </div>
+            </div>
+        </form>
+
+        <div class="row" style="width: 80vw;">
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                <table class="table table-responsive">
+                    <thead>
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
+                            @foreach (var field in IndexViewModel<Disc>.AllFieldNames)
+                            {
+                                if (field != "Id")
+                                {
+                                    <th>
+                                        @{
+                                            await Html.RenderPartialAsync("_SortField", new SortModel { ViewModel = Model, FieldName = field });
+                                        }
+                                    </th>
+                                }
+                            }
+                            <th></th>
+                        </tr>
+                    </thead>
 
-                            <td>
-                                <a asp-action="Create" asp-route-id="@item.Id">
-                                    <i class="icon-button edit-button fas fa-edit"></i>
-                                </a>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
 
-                                <a asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="icon-button details-button fas fa-eye"></i>
-                                </a>
+                                <td>
+                                    @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+                                    {
+                                        <a asp-action="Create" asp-route-id="@item.Id">
+                                            <i class="icon-button edit-button fas fa-edit"></i>
+                                        </a>
+                                    }
 
-                                <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
+                                    <a asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="icon-button details-button fas fa-eye"></i>
+                                    </a>
 
-                                <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Disc to delete</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
-                                                    <input type="hidden" asp-for="@item.Id" />
-                                                    <input type="submit" value="Delete" class="btn btn-danger" />
-                                                </form>
+                                    @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+                                    {
+                                        <button type="button" class="icon-button delete-button fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal@(item.Id)"></button>
+
+                                        <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Disc to delete</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @Html.DisplayFor(modelItem => item.Name)
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                                            <input type="hidden" asp-for="@item.Id" />
+                                                            <input type="submit" value="Delete" class="btn btn-danger" />
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <h1>No discs in database</h1>
-        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1>No discs in database</h1>
+            }
 
-        @{
-            await Html.RenderPartialAsync("_Pagination", Model);
-        }
+            @{
+                await Html.RenderPartialAsync("_Pagination", Model);
+            }
+        </div>
     </div>
-</div>
+}
