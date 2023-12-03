@@ -22,7 +22,6 @@ namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
 
             services.AddScoped<IUserStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
             services.AddScoped<IUserEmailStore<IdentityUser>, UserStore<IdentityUser, IdentityRole, ApplicationDbContext, string>>();
-
             services.AddScoped<IIdentityUserRepository, IdentityUserRepository>();
 
             services.AddScoped<IDebtorsRepository, DapperDebtorRepository>();
@@ -30,6 +29,9 @@ namespace CdDiskStoreAspNetCore.Utilities.ExtensionClasses
             services.AddScoped<IProfitFromClientRepository, DapperProfitFromClientRepository>();
             services.AddScoped<IUselessDiscsRepository, DapperUselessDiscsRepository>();
             services.AddScoped<IAdultFilmRatioRepository, DapperAdultFilmRatioRepository>();
+            
+            services.AddScoped<IChangeDiscTypePriceRepository, DapperChangeDiscTypePriceRepository>();
+            services.AddScoped<IChangeDiscountLevelRepository, DapperChangeDiscountLevelRepository>();
         }
     }
 }

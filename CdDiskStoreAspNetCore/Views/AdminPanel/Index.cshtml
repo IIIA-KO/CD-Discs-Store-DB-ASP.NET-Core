@@ -12,12 +12,13 @@ else
     <h1>Website Users</h1>
 
     <div class="container">
+
         <div class="row mb-3">
             <div class="col-md-3">
+
                 <div class="card">
                     <div class="card-body">
                         <h4>Views</h4>
-
                         <div class="d-flex flex-column">
                             <form method="post" asp-controller="Debtors" asp-action="Index">
                                 <input type="submit" class="btn btn-primary mb-2 w-100" value="Debtors" />
@@ -37,17 +38,6 @@ else
 
                             <form method="post" asp-controller="AdultFilmRatios" asp-action="Index">
                                 <input type="submit" class="btn btn-primary mb-2 w-100" value="18+ Film Ratio By Month" />
-                            </form>
-                        </div>
-
-                        <h4>Stored Procedures</h4>
-                        <div class="d-flex flex-column">
-                            <form method="post" asp-action="SP_ChangeDiscountLevelForClient">
-                                <input type="submit" class="btn btn-primary mb-2 w-100" value="Change Discount Level For Client" />
-                            </form>
-
-                            <form method="post" asp-page-handler="SP_ChangeDiscTypePrice">
-                                <input type="submit" class="btn btn-primary mb-2 w-100" value="Change Disc Type Price" />
                             </form>
                         </div>
                     </div>

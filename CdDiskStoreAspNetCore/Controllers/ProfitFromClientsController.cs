@@ -23,7 +23,7 @@ namespace CdDiskStoreAspNetCore.Controllers
                 SortFieldName = sortField,
                 SortOrder = sortOrder,
                 Skip = skip,
-                PageSize = 5,
+                PageSize = 20,
                 CountItems = await this._profitFromClientRepository.GetProcessedDataCountAsync(filter, filterFieldName)
             };
 

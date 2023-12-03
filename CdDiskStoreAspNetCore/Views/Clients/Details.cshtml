@@ -1,4 +1,12 @@
-﻿@model CdDiskStoreAspNetCore.Models.ClientDetailsViewModel
+﻿@inject SignInManager<IdentityUser> SignInManger
+@model CdDiskStoreAspNetCore.Models.ClientDetailsViewModel
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 
 <div class="container mt-3">
     <h1 class="mb-4">Details</h1>
@@ -125,9 +133,9 @@
         </div>
     </div>
 
-    <br/>
+    <br />
 
-    @if(Model.ContactPhones != null && Model.ContactPhones.Any())
+    @if (Model.ContactPhones != null && Model.ContactPhones.Any())
     {
         <div class="card">
             <div class="card-body">
@@ -194,7 +202,40 @@
     }
 
     <div class="mt-3">
-        <a asp-action="Create" asp-route-id="@Model?.Client.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        @if (SignInManger.IsSignedIn(User) && User.IsInRole("Administrator"))
+        {
+            <div>
+                <button class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#changeDiscountModal">
+                    Change Discount Level For Client
+                </button>
+            </div>
+
+            <div class="modal fade" id="changeDiscountModal" tabindex="-1" aria-labelledby="changeDiscountModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changeDiscountModalLabel">Change Discount Level For Client</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" asp-controller="ChangeDiscountLevel" asp-action="Execute" asp-route-idClient="@Model.Client.Id" asp-route-increase="@Model.Increase">
+                                <div class="mb-3">
+                                    <label asp-for="Increase" class="form-label">Increase (otherwise decrease):</label>
+                                    <input asp-for="Increase" type="checkbox" class="form-check-input" />
+                                    <span asp-validation-for="Increase" class="text-danger"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Execute</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a asp-action="Create" asp-route-id="@Model?.Client.Id" class="btn btn-primary me-md-2">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
     </div>
 </div>

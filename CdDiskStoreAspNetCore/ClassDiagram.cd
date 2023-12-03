@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.ChangePasswordModel" Collapsed="true">
+    <Position X="26.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAMAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.DeletePersonalDataModel" Collapsed="true">
+    <Position X="26" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAgAAABAAAAAMAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.Disable2faModel" Collapsed="true">
+    <Position X="27.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.DownloadPersonalDataModel" Collapsed="true">
+    <Position X="19.25" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.EmailModel" Collapsed="true">
+    <Position X="24.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAgACAAAAAgAABAAAAAEACAAAAAAgABgIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Email.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.EnableAuthenticatorModel" Collapsed="true">
+    <Position X="26" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAABAAiAQgAAAAAAAAMAAAAAgAACAEAIAAAAE=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.ExternalLoginsModel" Collapsed="true">
+    <Position X="17.25" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAABAIAEAAAAAIgAABAAAAAAgAAEAAAAAAAAJAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.GenerateRecoveryCodesModel" Collapsed="true">
+    <Position X="27.75" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAIAAAAAgAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.IndexModel">
+    <Position X="22" Y="13" Width="3.25" />
+    <NestedTypes>
+      <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.IndexModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAgAQBAAAAAEAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.ManageNavPages" Collapsed="true">
+    <Position X="27.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAABAACAggAAAKAgCQiAAAAAAAwAAAAUAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ManageNavPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.PersonalDataModel" Collapsed="true">
+    <Position X="24.25" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.ResetAuthenticatorModel" Collapsed="true">
+    <Position X="27.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAABAAAAAIAAAAAAAAAQEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.SetPasswordModel" Collapsed="true">
+    <Position X="17.25" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAEAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.ShowRecoveryCodesModel" Collapsed="true">
+    <Position X="20.75" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.Manage.TwoFactorAuthenticationModel" Collapsed="true">
+    <Position X="18.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAgAAAAAAgAABAAAAAIAAAAAACAAAFAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.AccessDeniedModel" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\AccessDenied.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ConfirmEmailModel" Collapsed="true">
+    <Position X="20.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ConfirmEmail.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ConfirmEmailChangeModel" Collapsed="true">
+    <Position X="18.25" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ExternalLoginModel" Collapsed="true">
+    <Position X="15.5" Y="7.75" Width="1.75" />
+    <NestedTypes>
+      <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ExternalLoginModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\ExternalLogin.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CQAADAAAAQAAAAAAAABAAAgIMgCAAAYAAAYAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ExternalLogin.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ForgotPasswordModel" Collapsed="true">
+    <Position X="26" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ForgotPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ForgotPasswordConfirmation" Collapsed="true">
+    <Position X="24.25" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.LockoutModel" Collapsed="true">
+    <Position X="20.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Lockout.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.LoginModel" Collapsed="true">
+    <Position X="22.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAgAABAAAAAMAAAAQAAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Login.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.LoginWith2faModel" Collapsed="true">
+    <Position X="24.25" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAMAAAAAAAAAIEAAAgAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\LoginWith2fa.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.LoginWithRecoveryCodeModel" Collapsed="true">
+    <Position X="24.25" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAMAAAAAAAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.LogoutModel" Collapsed="true">
+    <Position X="26" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Logout.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.RegisterModel" Collapsed="true">
+    <Position X="24.25" Y="10.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.RegisterModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Register.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAADAAAAQAAAAAgAABAAAAAMgCAAQQAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Register.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.RegisterConfirmationModel" Collapsed="true">
+    <Position X="22.5" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAMAACAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ResendEmailConfirmationModel" Collapsed="true">
+    <Position X="26" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEACAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ResetPasswordModel" Collapsed="true">
+    <Position X="15.5" Y="8.75" Width="1.75" />
+    <NestedTypes>
+      <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ResetPasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.Account.ResetPasswordConfirmationModel" Collapsed="true">
+    <Position X="27.75" Y="10.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Areas.Identity.Pages.ErrorModel" Collapsed="true">
+    <Position X="27.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Error.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.AdminPanelController">
+    <Position X="19.75" Y="1" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAABAACAAAAAAAAAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdminPanelController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.AdultFilmRatiosController">
+    <Position X="39.25" Y="15" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdultFilmRatiosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.ClientsController">
+    <Position X="18" Y="16.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAABAACAAAAAAAAAAAEAAEAAAAUAAAAAAAA=</HashCode>
+      <FileName>Controllers\ClientsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.DebtorsController" Collapsed="true">
+    <Position X="24.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\DebtorsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.DiscsController">
+    <Position X="8.25" Y="14.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAABAACAAAAAAAAAAAEAAEAgAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DiscsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.FilmsController" Collapsed="true">
+    <Position X="20.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABEACAAAAAAAAAAAEAAEAAAAEAAAAAAAE=</HashCode>
+      <FileName>Controllers\FilmsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.HomeController">
+    <Position X="33.25" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAIAAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.MusicsController">
+    <Position X="17.75" Y="13.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgABAACAAAAAAAAAAAEAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\MusicsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.ProfitFromClientsController">
+    <Position X="15.5" Y="9.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAg=</HashCode>
+      <FileName>Controllers\ProfitFromClientsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.QuarterIncomesController">
+    <Position X="17.25" Y="9.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAA=</HashCode>
+      <FileName>Controllers\QuarterIncomesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Controllers.UselessDiscsController" Collapsed="true">
+    <Position X="26" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UselessDiscsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Contexts.DapperContext" BaseTypeListCollapsed="true">
+    <Position X="37.5" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAEAAAAAAAA=</HashCode>
+      <FileName>Data\Contexts\DapperContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Migrations.CreateIdentitySchema" Collapsed="true">
+    <Position X="22.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Data\Migrations\00000000000000_CreateIdentitySchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Migrations.ApplicationDbContextModelSnapshot">
+    <Position X="33.5" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Data\Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.Client">
+    <Position X="8.25" Y="18.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAGwEAAAAAABAAIAAAAAAAAAAAIAAACAAQAAAAAAAg=</HashCode>
+      <FileName>Data\Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.Disc">
+    <Position X="13.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Disc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.Film">
+    <Position X="15.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgAAAAAAAEAIAAAQAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Film.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.Music">
+    <Position X="11.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACAAAAAAAAAIAAAQAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Music.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.OperationLog" Collapsed="true">
+    <Position X="20.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAAAAMAAgAAAAAAABAAAAAA=</HashCode>
+      <FileName>Data\Models\OperationLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.OperationType" Collapsed="true">
+    <Position X="22.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\OperationType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Models.PersonalDiscount">
+    <Position X="34.5" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAAEAAAAAAAAAAAAAAAAIAAAAAABAAAAAA=</HashCode>
+      <FileName>Data\Models\PersonalDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperAdultFilmRatioRepository" BaseTypeListCollapsed="true">
+    <Position X="39" Y="11.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAACAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\DapperAdultFilmRatioRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperClientRepository" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="6.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAQIAABAAUEASACAkAQAAAEAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Data\Repository\DapperClientRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperDebtorRepository" BaseTypeListCollapsed="true">
+    <Position X="27.75" Y="1.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAACAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\DapperDebtorRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperDiscRepository" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="19.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIABAAAABAAAAAAACgkAQACAEAgAAAAAAQAAIIA=</HashCode>
+      <FileName>Data\Repository\DapperDiscRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperFilmRepository" BaseTypeListCollapsed="true">
+    <Position X="28" Y="13" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAMIAAAAAABAAAAAAACAkAQAAAEAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Data\Repository\DapperFilmRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperMusicRepository" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="19.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAEAEICAAAAABAAAAAAACAkAQAAAEAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Data\Repository\DapperMusicRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperProfitFromClientRepository" BaseTypeListCollapsed="true">
+    <Position X="33.75" Y="11" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAACAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\DapperProfitFromClientRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperQuarterIncomeRepository" BaseTypeListCollapsed="true">
+    <Position X="36" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAACAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\DapperQuarterIncomeRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.DapperUselessDiscsRepository" BaseTypeListCollapsed="true">
+    <Position X="32.25" Y="19.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAACAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\DapperUselessDiscsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.Repository.IdentityUserRepository" BaseTypeListCollapsed="true">
+    <Position X="12" Y="20.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAEABIAAAAAABAAAAAAACAkgQgAgAAgAAAAAQACAIIA=</HashCode>
+      <FileName>Data\Repository\IdentityUserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Data.ApplicationDbContext">
+    <Position X="32.5" Y="17.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.AdminPanelCreateViewModel">
+    <Position X="39.5" Y="18.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAAAAQAAAAgAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AdminPanelCreateViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.AdminPanelDetailsViewModel">
+    <Position X="19" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AdminPanelDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.ClientDetailsViewModel">
+    <Position X="13.75" Y="18.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAEEAAAAAAAABAAQAAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Models\ClientDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.DiscsDetailsViewModel">
+    <Position X="21.75" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQAAQAAAgAA=</HashCode>
+      <FileName>Models\DiscsDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.ErrorViewModel" Collapsed="true">
+    <Position X="29.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.FilmsDetailsViewModel" Collapsed="true">
+    <Position X="22.5" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\FilmsDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.IndexViewModel&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="1" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABBAAQAAACAAAAACAAACCABAAAAAAAAAAEAAAEAA=</HashCode>
+      <FileName>Models\IndexViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.MusicsDetailsViewModel">
+    <Position X="19" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\MusicsDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Models.SortModel">
+    <Position X="14" Y="14.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SortModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Utilities.Attributes.EmailAddressValidation" Collapsed="true">
+    <Position X="22.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Attributes\EmailAddressValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Utilities.Attributes.PasswordValidation">
+    <Position X="13.75" Y="15.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Attributes\PasswordValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Utilities.Attributes.PhoneValidation">
+    <Position X="30.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Utilities\Attributes\PhoneValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Utilities.Attributes.PriceValidation">
+    <Position X="11.5" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Utilities\Attributes\PriceValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Utilities.ExtensionClasses.ServiceRegistration" Collapsed="true">
+    <Position X="15.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\ExtensionClasses\ServiceRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CdDiskStoreAspNetCore.Program">
+    <Position X="17.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Contexts.IDapperContext">
+    <Position X="8" Y="12.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Contexts\IDapperContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IAdultFilmRatioRepository" Collapsed="true">
+    <Position X="4.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IAdultFilmRatioRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IClientRepository" Collapsed="true">
+    <Position X="4.25" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQIAAAAAEEASAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IClientRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IDebtorsRepository" Collapsed="true">
+    <Position X="10.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IDebtorsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IDiscRepository" Collapsed="true">
+    <Position X="3.25" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Data\Repository\IDiscRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IFilmRepository" Collapsed="true">
+    <Position X="6" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IFilmRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IGenericRepository&lt;T&gt;">
+    <Position X="1" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAAAAAAAAACAkAQAAAEAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Data\Repository\IGenericRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IGenericViewRepository&lt;T&gt;" Collapsed="true">
+    <Position X="9.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAACAgAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IGenericViewRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IIdentityUserRepository">
+    <Position X="3" Y="14.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAAAAAAAAACAkAQAAAAAgAAAAAQACAIIA=</HashCode>
+      <FileName>Data\Repository\IIdentityUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IMusicRepository">
+    <Position X="0.5" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IMusicRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IProfitFromClientRepository" Collapsed="true">
+    <Position X="7.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IProfitFromClientRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IQuarterIncomeRepository">
+    <Position X="2.75" Y="18.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAACAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IQuarterIncomeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Data.Repository.IUselessDiscsRepository" Collapsed="true">
+    <Position X="13" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repository\IUselessDiscsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Models.Interfaces.Data.IDataProcessable">
+    <Position X="6" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\Data\IDataProcessable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Models.Interfaces.Data.IFilterable">
+    <Position X="6.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\Data\IFilterable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Models.Interfaces.Data.IPaginable">
+    <Position X="9" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAEAA=</HashCode>
+      <FileName>Models\Interfaces\Data\IPaginable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CdDiskStoreAspNetCore.Models.Interfaces.Data.ISortable">
+    <Position X="11.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\Data\ISortable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CdDiskStoreAspNetCore.Models.Enums.MySortOrder">
+    <Position X="6" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\MySortOrder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
