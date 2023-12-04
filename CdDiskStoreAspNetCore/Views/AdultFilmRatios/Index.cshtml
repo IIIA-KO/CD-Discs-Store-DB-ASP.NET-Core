@@ -12,30 +12,6 @@ else
     <h1>18+ Films Ratios</h1>
 
     <div class="container">
-        <div class="container">
-            <form asp-controller="AdminPanel" asp-action="Index" method="post">
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label asp-for="FilterFieldName">Filter by:</label>
-                            @Html.DropDownList("FilterFieldName", new SelectList(IndexViewModel<AdultFilmRatio>.FilterableFieldNames, Model.FilterFieldName), new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label for="filter">Filter:</label>
-                            <input type="text" id="filter" name="filter" value="@Model.Filter" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-grid">
-                        <input type="submit" value="Filter" class="btn btn-primary" title="Filter" />
-                    </div>
-                </div>
-            </form>
-        </div>
-
         <div class="row" style="width: 80vw;">
             @if (Model.Items != null && Model.Items.Any())
             {

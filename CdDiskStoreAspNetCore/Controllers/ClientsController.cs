@@ -65,7 +65,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -88,7 +88,7 @@ namespace CdDiskStoreAspNetCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,FirstName,LastName,Address,City,ContactPhone,ContactMail,BirthDay,MarriedStatus,Sex,HasChild")] Client client)
         {
             if (!ModelState.IsValid && !ValidateContactDetails(client))
