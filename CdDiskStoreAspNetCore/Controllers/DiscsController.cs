@@ -69,7 +69,7 @@ namespace CdDiskStoreAspNetCore.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrator, Manager")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create(Guid? id)
         {
             if (id == null)
@@ -92,7 +92,7 @@ namespace CdDiskStoreAspNetCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Manager")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create(Guid? id, [Bind("Id,Name,Price")] Disc disc)
         {
             if (!ModelState.IsValid && !ValidateDisc(disc))
