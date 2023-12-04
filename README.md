@@ -21,7 +21,7 @@ Database scheme:
 | BirthDay | DATE | No  | No  | Birth date of the client, not null |
 | MarriedStatus | BIT | No  | No  | Marital status of the client (0 - Not Married, 1 - Married) |
 | Sex | BIT | No  | No  | Gender of the client (0 - Female, 1 - Male) |
-| HasChild | BIT | No  | No  | Whether the client has children |
+| HasChild | BIT | No  | No  | Whether the client has children (0 - Has not, 1 - Has) |
 
 ### Table: PhoneList
 
@@ -119,10 +119,10 @@ When the client has a debt the discount doean't work out. In case when the debt 
 
 	Stores information about types of operation client can make (Purchase or Rent).
 
-| Field Name | Data Type | Primary Key | Description |
+| Field Name | Data Type | Primary Key | Foreign Key | Description |
 | --- | --- | --- | --- |
-| Id  | UNIQUEIDENTIFIER | Yes | Primary key with default value NEWID() |
-| TypeName | NVARCHAR(30) | No  | Name of the operation type |
+| Id  | UNIQUEIDENTIFIER | Yes | No |Primary key with default value NEWID() |
+| TypeName | NVARCHAR(30) | No  | No |Name of the operation type |
 
 ### Table: OperationLog
 

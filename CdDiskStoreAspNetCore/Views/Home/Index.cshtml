@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <h1>Database scheme:</h1>
     <div class="text-center">
-        <img src="/images/TablesScheme.png" class="img-fluid rounded mx-auto d-block" alt="Tables Scheme">
+        <img src="/images/TablesScheme.jpg" class="img-fluid rounded mx-auto d-block" alt="Tables Scheme">
     </div>
 
     <br />
@@ -100,7 +100,7 @@
                 <td>BIT</td>
                 <td>No</td>
                 <td>No</td>
-                <td>Whether the client has children</td>
+                <td>Whether the client has children (0 - Has not, 1 - Has)</td>
             </tr>
         </tbody>
     </table>
@@ -489,6 +489,7 @@
                 <th>Field Name</th>
                 <th>Data Type</th>
                 <th>Primary Key</th>
+                <th>Foreign Key</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -497,11 +498,13 @@
                 <td>Id</td>
                 <td>UNIQUEIDENTIFIER</td>
                 <td>Yes</td>
+                <td>No</td>
                 <td>Primary key with default value NEWID()</td>
             </tr>
             <tr>
                 <td>TypeName</td>
                 <td>NVARCHAR(30)</td>
+                <td>No</td>
                 <td>No</td>
                 <td>Name of the operation type</td>
             </tr>
