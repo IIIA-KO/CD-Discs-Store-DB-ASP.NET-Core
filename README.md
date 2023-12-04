@@ -1,7 +1,7 @@
 Database scheme:
 ================
 
-![](/images/TablesScheme.png)
+![DatabaseScheme](/СdDiskStoreAspNetCore/wwwroot/images/TablesScheme.png)
 
   
 
