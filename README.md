@@ -120,7 +120,7 @@ When the client has a debt the discount doean't work out. In case when the debt 
 	Stores information about types of operation client can make (Purchase or Rent).
 
 | Field Name | Data Type | Primary Key | Foreign Key | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | -- |
 | Id  | UNIQUEIDENTIFIER | Yes | No | Primary key with default value NEWID() |
 | TypeName | NVARCHAR(30) | No  | No | Name of the operation type |
 
