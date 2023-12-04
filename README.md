@@ -121,8 +121,8 @@ When the client has a debt the discount doean't work out. In case when the debt 
 
 | Field Name | Data Type | Primary Key | Foreign Key | Description |
 | --- | --- | --- | --- |
-| Id  | UNIQUEIDENTIFIER | Yes | No |Primary key with default value NEWID() |
-| TypeName | NVARCHAR(30) | No  | No |Name of the operation type |
+| Id  | UNIQUEIDENTIFIER | Yes | No | Primary key with default value NEWID() |
+| TypeName | NVARCHAR(30) | No  | No | Name of the operation type |
 
 ### Table: OperationLog
 
