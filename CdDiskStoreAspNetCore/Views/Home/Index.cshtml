@@ -107,7 +107,7 @@
 
 
     <div class="table-description">
-    <h3>Table: PhoneList</h3>
+        <h3>Table: PhoneList</h3>
         <p>Stores phone numbers associated with clients.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -185,14 +185,22 @@
     </table>
 
     <div class="table-description">
-    <h3>Table: PersonalDiscount</h3>
+        <h3>Table: PersonalDiscount</h3>
         <p>Stores personal discounts associated with clients.</p>
         <p>
-            Personal client's discount. 0 in default. 
-            As the profit from the client reaches out 
-            5000 UAH PersonalDiscount will get 5%. 
-            15000 UAH - 10%, 30000 UAH - 15%, 
-            50000 UAH - 20%. When the client has a debt the discount doean't work out. 
+            Personal client's discount. 0 in default.
+            As the profit from the client reaches out
+        </p>
+
+        <p>
+            5000 UAH PersonalDiscount will get 5%. <br />
+            15000 UAH - 10%, <br />
+            30000 UAH - 15%, <br />
+            50000 UAH - 20%.
+        </p>
+
+        <p>
+            When the client has a debt the discount doean't work out.
             In case when the debt hasn't been repayed the client goes down one level of the discounts.
             Rent: 1 month. The rent price is 50% of purhcase price
         </p>
@@ -247,7 +255,7 @@
     </table>
 
     <div class="table-description">
-    <h3>Table: Music</h3>
+        <h3>Table: Music</h3>
         <p>Stores information about music.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -301,7 +309,7 @@
 
 
     <div class="table-description">
-    <h3>Table: Disc</h3>
+        <h3>Table: Disc</h3>
         <p>Stores information about discs.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -339,8 +347,8 @@
         </tbody>
     </table>
 
-     <div class="table-description">
-     <h3>Table: Film</h3>
+    <div class="table-description">
+        <h3>Table: Film</h3>
         <p>Stores information about films.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -407,7 +415,7 @@
     </table>
 
     <div class="table-description">
-    <h3>Table: DiscMusic</h3>
+        <h3>Table: DiscMusic</h3>
         <p>Stores information about discs with music.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -439,7 +447,7 @@
     </table>
 
     <div class="table-description">
-    <h3>Table: DiscFilm</h3>
+        <h3>Table: DiscFilm</h3>
         <p>Stores information about discs with film.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -470,7 +478,7 @@
         </tbody>
     </table>
 
-    
+
     <div class="table-description">
         <h3>Table: OperationType</h3>
         <p>Stores information about types of operation client can make (Purchase or Rent).</p>
@@ -501,7 +509,7 @@
     </table>
 
     <div class="table-description">
-    <h3>Table: OperationLog</h3> 
+        <h3>Table: OperationLog</h3>
         <p>Stores log information about all operations.</p>
     </div>
     <table class="table table-bordered table-striped">
@@ -563,10 +571,11 @@
     <hr />
 
     <h1>Roless acced levels</h1>
-        
+
     <div class="table-description">
         <h3>Access levels:</h3>
-        <p>5 – CRUD
+        <p>6 - CRUD + Admin Panel + Stored Procedures call + Views call</p>
+        <p>5 – CRUD</p>
         <p>4 – C</p>
         <p>3 – D</p>
         <p>2 – U</p>
@@ -575,95 +584,95 @@
     </div>
 
     <table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Tables/Roles</th>
-            <th>Admin</th>
-            <th>Manager</th>
-            <th>User</th>
-            <th>Guest</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Client</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>PhoneList</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>MailList</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>PersonalDiscount</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Music</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>Disc</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>Film</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>DiscMusic</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>DiscFilm</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>OperationType</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>OperationLog</td>
-            <td>5</td>
-            <td>3, 2, 1</td>
-            <td>1</td>
-            <td>0</td>
-        </tr>
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th>Tables/Roles</th>
+                <th>Admin</th>
+                <th>Manager</th>
+                <th>User</th>
+                <th>Guest</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Client</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>PhoneList</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>MailList</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>PersonalDiscount</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Music</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Disc</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Film</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>DiscMusic</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>DiscFilm</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>OperationType</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>OperationLog</td>
+                <td>6</td>
+                <td>5</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
 
     <hr />
 
@@ -789,22 +798,24 @@
         border-radius: 5px;
         background-color: #f8f9fa;
     }
-    .table-description h3 {
-        color: #007bff;
-    }
-    .table-description p {
-        color: #6c757d;
-    }
+
+        .table-description h3 {
+            color: #007bff;
+        }
+
+        .table-description p {
+            color: #6c757d;
+        }
 
     .file-description {
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
         .file-description h2 {
             color: #007bff;

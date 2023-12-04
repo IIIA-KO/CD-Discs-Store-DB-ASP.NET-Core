@@ -28,10 +28,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
                         @if (SignInManger.IsSignedIn(User) && (User.IsInRole("Administrator") || User.IsInRole("Manager") || User.IsInRole("User")))
                         {
                             <li class="nav-item">
