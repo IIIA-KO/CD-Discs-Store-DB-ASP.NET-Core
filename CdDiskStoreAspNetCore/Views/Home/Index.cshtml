@@ -2,7 +2,822 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <h1>Database scheme:</h1>
+    <div class="text-center">
+        <img src="/images/TablesScheme.png" class="img-fluid rounded mx-auto d-block" alt="Tables Scheme">
+    </div>
+
+    <br />
+
+    <div class="table-description">
+        <h3>Table: Client</h3>
+        <p>Stores information about clients.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the Client table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>FirstName</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>First name of the client, not null</td>
+            </tr>
+            <tr>
+                <td>LastName</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Last name of the client, not null</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>NVARCHAR(100)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Address of the client, not null</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>City of the client, not null</td>
+            </tr>
+            <tr>
+                <td>ContactPhone</td>
+                <td>NVARCHAR(20)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Contact phone number of the client, not null</td>
+            </tr>
+            <tr>
+                <td>ContactMail</td>
+                <td>NVARCHAR(100)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Contact email of the client, not null</td>
+            </tr>
+            <tr>
+                <td>BirthDay</td>
+                <td>DATE</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Birth date of the client, not null</td>
+            </tr>
+            <tr>
+                <td>MarriedStatus</td>
+                <td>BIT</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Marital status of the client (0 - Not Married, 1 - Married)</td>
+            </tr>
+            <tr>
+                <td>Sex</td>
+                <td>BIT</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Gender of the client (0 - Female, 1 - Male)</td>
+            </tr>
+            <tr>
+                <td>HasChild</td>
+                <td>BIT</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Whether the client has children</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="table-description">
+    <h3>Table: PhoneList</h3>
+        <p>Stores phone numbers associated with clients.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the PhoneList table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>NVARCHAR(20)</td>
+                <td>No</td>
+                <td>Yes, references Client(Id) on delete cascade</td>
+                <td>Phone number, not null</td>
+            </tr>
+            <tr>
+                <td>IdClient</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Client(Id) on delete cascade</td>
+                <td>Foreign key referencing Client table, not null</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+        <h3>Table: MailList</h3>
+        <p>Stores additional email addresses associated with clients.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the MailList table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td>NVARCHAR(100)</td>
+                <td>No</td>
+                <td>Yes, references Client(Id) on delete cascade</td>
+                <td>Email address, not null</td>
+            </tr>
+            <tr>
+                <td>IdClient</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Client(Id) on delete cascade</td>
+                <td>Foreign key referencing Client table, not null</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+    <h3>Table: PersonalDiscount</h3>
+        <p>Stores personal discounts associated with clients.</p>
+        <p>
+            Personal client's discount. 0 in default. 
+            As the profit from the client reaches out 
+            5000 UAH PersonalDiscount will get 5%. 
+            15000 UAH - 10%, 30000 UAH - 15%, 
+            50000 UAH - 20%. When the client has a debt the discount doean't work out. 
+            In case when the debt hasn't been repayed the client goes down one level of the discounts.
+            Rent: 1 month. The rent price is 50% of purhcase price
+        </p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the PersonalDiscount table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>IdClient</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Client(Id) on delete cascade</td>
+                <td>Foreign key referencing Client table, not null</td>
+            </tr>
+            <tr>
+                <td>StartDateTime</td>
+                <td>DATETIME</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, start date and time for the personal discount</td>
+            </tr>
+            <tr>
+                <td>EndDateTime</td>
+                <td>DATETIME</td>
+                <td>No</td>
+                <td>No</td>
+                <td>End date and time for the personal discount</td>
+            </tr>
+            <tr>
+                <td>PersonalDiscountValue</td>
+                <td>INT</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, default 0, value of the personal discount</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+    <h3>Table: Music</h3>
+        <p>Stores information about music.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the Music table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, name of the music</td>
+            </tr>
+            <tr>
+                <td>Genre</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, genre of the music</td>
+            </tr>
+            <tr>
+                <td>Artist</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, artist of the music</td>
+            </tr>
+            <tr>
+                <td>Language</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, language of the music</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="table-description">
+    <h3>Table: Disc</h3>
+        <p>Stores information about discs.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key for the Disc table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, name of the disc</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>DECIMAL(9, 2)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, price of the disc</td>
+            </tr>
+        </tbody>
+    </table>
+
+     <div class="table-description">
+     <h3>Table: Film</h3>
+        <p>Stores information about films.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Check Constraint</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Primary key for the Film table, not null, default NEWID()</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, name of the film</td>
+            </tr>
+            <tr>
+                <td>Genre</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, genre of the film</td>
+            </tr>
+            <tr>
+                <td>Producer</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, producer of the film</td>
+            </tr>
+            <tr>
+                <td>MainRole</td>
+                <td>NVARCHAR(50)</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Not null, main role in the film</td>
+            </tr>
+            <tr>
+                <td>AgeLimit</td>
+                <td>INT</td>
+                <td>No</td>
+                <td>No</td>
+                <td>AgeLimit >= 0</td>
+                <td>Not null, age limit for the film</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+    <h3>Table: DiscMusic</h3>
+        <p>Stores information about discs with music.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>IdDisc</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Disc(Id) on delete cascade</td>
+                <td>Foreign key referencing Disc table</td>
+            </tr>
+            <tr>
+                <td>IdMusic</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Music(Id) on delete cascade</td>
+                <td>Foreign key referencing Music table</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+    <h3>Table: DiscFilm</h3>
+        <p>Stores information about discs with film.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>IdDisc</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Disc(Id) on delete cascade</td>
+                <td>Foreign key referencing Disc table</td>
+            </tr>
+            <tr>
+                <td>IdFilm</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes, references Film(Id) on delete cascade</td>
+                <td>Foreign key referencing Film table</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <div class="table-description">
+        <h3>Table: OperationType</h3>
+        <p>Stores information about types of operation client can make (Purchase or Rent).</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>Primary key with default value NEWID()</td>
+            </tr>
+            <tr>
+                <td>TypeName</td>
+                <td>NVARCHAR(30)</td>
+                <td>No</td>
+                <td>Name of the operation type</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-description">
+    <h3>Table: OperationLog</h3> 
+        <p>Stores log information about all operations.</p>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field Name</th>
+                <th>Data Type</th>
+                <th>Primary Key</th>
+                <th>Foreign Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Primary key with default value NEWID()</td>
+            </tr>
+            <tr>
+                <td>OperationType</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes (References OperationType(Id) on delete cascade)</td>
+                <td>Operation type associated with the log entry</td>
+            </tr>
+            <tr>
+                <td>OperationDateTimeStart</td>
+                <td>DATETIME</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Start date and time of the operation (since 2014)</td>
+            </tr>
+            <tr>
+                <td>OperationDateTimeEnd</td>
+                <td>DATETIME</td>
+                <td>No</td>
+                <td>No</td>
+                <td>End date and time of the operation. In the case of purchase or rent when the disc wasn't returned the value is NULL</td>
+            </tr>
+            <tr>
+                <td>IdClient</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes (References Client(Id) on delete cascade)</td>
+                <td>Client associated with the operation</td>
+            </tr>
+            <tr>
+                <td>IdDisc</td>
+                <td>UNIQUEIDENTIFIER</td>
+                <td>No</td>
+                <td>Yes (References Disc(Id) on delete cascade)</td>
+                <td>Disc associated with the operation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h1>Roless acced levels</h1>
+        
+    <div class="table-description">
+        <h3>Access levels:</h3>
+        <p>5 – CRUD
+        <p>4 – C</p>
+        <p>3 – D</p>
+        <p>2 – U</p>
+        <p>1 – R</p>
+        <p>0 – No Access</p>
+    </div>
+
+    <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tables/Roles</th>
+            <th>Admin</th>
+            <th>Manager</th>
+            <th>User</th>
+            <th>Guest</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Client</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>PhoneList</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>MailList</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>PersonalDiscount</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Music</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Disc</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Film</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>DiscMusic</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>DiscFilm</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>OperationType</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>OperationLog</td>
+            <td>5</td>
+            <td>3, 2, 1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+
+    <hr />
+
+    <h1>Files</h1>
+
+    <div class="file-description">
+        <h3>TablesCreation.sql</h3>
+        <p>
+            This SQL file is responsible for creating the necessary database tables for the CD Disk Store application.
+            It includes the creation of tables such as Client, PhoneList, MailList, PersonalDiscount, Music, Disc, Film, DiscMusic, DiscFilm, OperationType, and OperationLog.
+        </p>
+        <p>
+            The script also drops the tables if they exist before creating them, ensuring a fresh start.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>DataGeneration.sql</h3>
+        <p>
+            This file contains SQL queries for generating random data related to clients, phones, emails, music, films, discs, and operations.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>Backup.sql</h3>
+        <p>
+            Contains script of backing up the database
+        </p>
+    </div>
+
+    <h2>Triggers</h2>
+
+    <div class="file-description">
+        <h3>OperationLogInsertUpdate.sql</h3>
+        <p>
+            Contains script of creating the trigger for OperationLog table after the INSERT and UPDATE command which should add the new data to PersonalDiscount table.
+        </p>
+    </div>
+
+    <h2>Views</h2>
+
+    <div class="file-description">
+        <h3>Debtors.sql</h3>
+        <p>
+            The list of debtors and the period of indebtedness.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>AdultFilmRatioByMonth.sql</h3>
+        <p>
+            The percentage of adult films rented by male ('M') and female ('F') clients for each month of the year.
+            The calculation is based on the total number of film rental operations and the count of adult film rentals.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>IncomePerEachFinancialQuarter.sql</h3>
+        <p>
+            Income for each quarter of each year.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>ProfitFromEachClientStatistics.sql</h3>
+        <p>
+            Profit from each customer from renting and buying discs with music and films in the format: [Client's Id] [OrderYear] [MusicPurchase], [MusicRent], [FilmPurchase], [FilmRent].
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>UselessDiscs.sql</h3>
+        <p>
+            The discs which haven't been bought or rented by anyone.
+        </p>
+    </div>
+
+    <h2>Stored Procedures</h2>
+
+    <div class="file-description">
+        <h3>ChangeDiscountLevelForClient.sql</h3>
+        <p>
+            Change the level of discount for a certain client.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>ChangeDiscTypePrice.sql</h3>
+        <p>
+            Inclines the prices for each disc in a certain category.
+        </p>
+    </div>
+
+    <h2>Functions</h2>
+
+    <div class="file-description">
+        <h3>GetTotalProfitFromClient.sql</h3>
+        <p>
+            Calculation of the total income received from the client.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>GetTotalPurchaseProfitFromClient.sql</h3>
+        <p>
+            Calculation of income received from a customer for purchases of disks.
+        </p>
+    </div>
+
+    <div class="file-description">
+        <h3>GetTotalRentProfitFromClient.sql</h3>
+        <p>
+            Calculation of income received from a customer for renting disks.
+        </p>
+    </div>
 </div>
+
+<style>
+    .table-description {
+        margin-top: 40px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+    .table-description h3 {
+        color: #007bff;
+    }
+    .table-description p {
+        color: #6c757d;
+    }
+
+    .file-description {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .file-description h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        .file-description h3 {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .file-description p {
+            color: #6c757d;
+            margin-left: 20px;
+        }
+</style>
